@@ -73,7 +73,7 @@ function addProductToCart(product) {
         newCart = {
           ...cart,
           [name]: {
-            priceInCents: priceInCents,
+            priceInCents,
             quantity: itemQuantity + 1,
           },
         };
@@ -81,7 +81,7 @@ function addProductToCart(product) {
         newCart = {
           ...cart,
           [name]: {
-            priceInCents: priceInCents,
+            priceInCents,
             quantity: 1,
           },
         };
