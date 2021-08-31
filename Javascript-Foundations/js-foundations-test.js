@@ -51,7 +51,7 @@ const product = {
   priceInCents: 8800,
 };
 
-function addProductToCart(product) {
+function addProductToCart(product, cart = {}) {
   let newCart;
   const { name, priceInCents, quantity = 1 } = product;
 
