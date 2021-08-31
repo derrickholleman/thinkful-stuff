@@ -91,7 +91,7 @@ function addProductToCart(product, cart = {}) {
 
   return newCart;
 }
-console.log(addProductToCart(product));
+console.log(addProductToCart(product, cart));
 
 function calculateTotal(cart) {
   let total = 0;
