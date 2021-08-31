@@ -56,12 +56,12 @@ function addProductToCart(product, cart = {}) {
   const { name, priceInCents, quantity = 1 } = product;
 
   if (Object.keys(cart).length === 0) {
-    return (newCart = {
+    return newCart = {
       [name]: {
         priceInCents,
         quantity,
       },
-    });
+    };
   }
 
   for (let item in cart) {

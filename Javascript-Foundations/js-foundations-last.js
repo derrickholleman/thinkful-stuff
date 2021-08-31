@@ -19,7 +19,7 @@ function printReceipt(cart) {
     const price = items.priceInCents;
 
     const totalInCents = price * totalQuantity;
-    const totalInDollars = (totalInCents / 100);
+    const totalInDollars = totalInCents / 100;
 
     total += totalInDollars;
     message += `${totalQuantity}x${item} - $${totalInDollars.toFixed(2)}\n`;
