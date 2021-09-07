@@ -9,7 +9,7 @@ function getPriceInDollars(product = {}, {priceInCents = 0} = product) {
 }
 console.log(getPriceInDollars(products))
 
-function checkIfSizeIsAvailable(product, size = false, {availableSizes = []} = product) {
+function checkIfSizeIsAvailable(product, size, {availableSizes = []} = product) {
     let sizes = availableSizes;
     for (let i = 0; i < sizes.length; i++) {
       if (sizes[i] === size) {
