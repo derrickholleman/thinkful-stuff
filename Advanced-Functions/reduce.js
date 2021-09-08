@@ -1,3 +1,10 @@
+let scores = [62,81,81]
+let total = scores.reduce((acc, num) => {
+  acc += num
+  return acc
+}, 0) / scores.length
+console.log(total)
+
 const parks = [
   {
     name: "Canyonlands",
