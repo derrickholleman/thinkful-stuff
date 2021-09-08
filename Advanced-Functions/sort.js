@@ -1,7 +1,8 @@
-let strArr = ['Hello', 'Zed', 'Alpha', 'Mom']
+let strArr = ['Hello', 'Zed', 'Alpha', 'Mom', 'dad']
 
 function sortWords(words) {
-    return words.sort((a, b) => a > b ? 1 : -1)
+  // compares words as if they were all lowercase
+    return words.sort((a, b) => a.toLowerCase() > b.toLowerCase() ? 1 : -1)
 }
 console.log(sortWords(strArr))
 // --------------------------------------- //

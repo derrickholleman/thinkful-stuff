@@ -1,0 +1,19 @@
+higher order functions
+
+FIND. 
+// returns FIRST match of the given condition (returns value)
+
+REDUCE. 
+// takes an array and turns it into a different data type (number or object)
+
+MAP. 
+// reformats array values into a new array
+
+SOME. 
+// returns boolean regarding if 'some' indexes in the array match the given condition 
+
+EVERY.
+// returns boolean regarding if 'every' index in the array matches the given condition  
+
+SORT.
+// takes an array and mutates it's values based on sort condition.  with numbers use a - b, letters use a > b ? 1 : -1
