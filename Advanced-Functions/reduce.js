@@ -29,10 +29,7 @@ console.log(result);
 
 // add up areaInSquareKm for each index
 function squareKmTotal(parks) {
-  return parks.reduce(
-    (total, park) => total + park.areaInSquareKm,
-    0
-  );
+  return parks.reduce((total, park) => total + park.areaInSquareKm, 0);
 }
 console.log(squareKmTotal(parks));
 // -------------------------------------------- //
@@ -42,7 +39,6 @@ function parkNameAndState(parks) {
     acc[park.name] = park.location.state;
     return acc;
   }, {});
-
 }
 console.log(parkNameAndState(parks));
 // --------------------------------------------- //
