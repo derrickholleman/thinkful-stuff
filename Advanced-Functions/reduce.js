@@ -46,18 +46,3 @@ function parkNameAndState(parks) {
 }
 console.log(parkNameAndState(parks));
 // --------------------------------------------- //
-
-function parkByState(parks) {
-    return parks.reduce((acc, park) => {
-        // if no array with state name, set it equal to an empty array
-      if (acc[park.location.state] === undefined) {
-        acc[park.location.state] = [];
-      }
-      
-      // push all park objects in their respective arrays
-      acc[park.location.state].push(park);
-      console.log(acc[park.location.state])
-      return acc;
-    }, {});
-  }
-console.log(parkByState(parks));
