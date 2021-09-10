@@ -6,6 +6,9 @@ FIND.
 REDUCE. 
 // takes an array and turns it into a different data type (number or object)
 
+FILTER.
+// creates a new array with values that pass the given condition
+
 MAP. 
 // reformats array values into a new array
 
