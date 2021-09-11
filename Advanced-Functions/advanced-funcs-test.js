@@ -45,7 +45,7 @@ const users = {
     visited: [2, 5, 1],
     wishlist: [],
   },
-  "thiagostrong1": {
+  thiagostrong1: {
     visited: [5],
     wishlist: [6, 3, 2],
   },
@@ -80,26 +80,43 @@ console.log(userHasVisitedAllParksInState(parks, users, "Utah", "don.kim1990"));
 // ------------------------------------ //
 
 function userHasVisitedParkOnWishlist(users, user1, user2) {
-    return users[user1].visited.some((place) => users[user2].wishlist.includes(place))
+  return users[user1].visited.some((place) =>
+    users[user2].wishlist.includes(place)
+  );
 }
-console.log(userHasVisitedParkOnWishlist(users, "karah.branch3", "don.kim1990"));
+console.log(
+  userHasVisitedParkOnWishlist(users, "karah.branch3", "don.kim1990")
+);
 // ------------------------------------ //
 
-function getUsersForUserWishlist(users, user) {
-    let targetPlaces = users[user].wishlist
-    let foundUsers = []
-
-    for (let person in users) {
-        const user = users[person]
-        const visitedPlaces = user.visited
-
-        for (let i = 0; i < visitedPlaces.length; i++) {
-            if (targetPlaces.includes(visitedPlaces[i]) && foundUsers.includes(person) === false) {
-                foundUsers.push(person)
-            }
-        }
+function getUsersForUserWishlist(users, username) {
+  const places = users[username].wishlist;
+  const matchingUsers = [];
+  
+  for (const user in users) {
+    if (users[user].visited.some((park) => places.includes(park))) {
+      matchingUsers.push(user);
     }
-
-    return foundUsers
+  }
+  return matchingUsers;
 }
-console.log(getUsersForUserWishlist(users, "thiagostrong1"))
+console.log(getUsersForUserWishlist(users, "thiagostrong1"));
+
+// function getUsersForUserWishlist(users, user) {
+//     let targetPlaces = users[user].wishlist
+//     let foundUsers = []
+
+//     for (let person in users) {
+//         const user = users[person]
+//         const visitedPlaces = user.visited
+
+//         for (let i = 0; i < visitedPlaces.length; i++) {
+//             if (targetPlaces.includes(visitedPlaces[i]) && foundUsers.includes(person) === false) {
+//                 foundUsers.push(person)
+//             }
+//         }
+//     }
+
+//     return foundUsers
+// }
+// console.log(getUsersForUserWishlist(users, "thiagostrong1"))
