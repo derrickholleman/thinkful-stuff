@@ -1,0 +1,1 @@
+const authors = require('../data/authors.js')
