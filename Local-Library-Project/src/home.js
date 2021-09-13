@@ -38,7 +38,7 @@ function getMostCommonGenres(books) {
     return acc;
   }, {});
 
-  // get count from genres array by accessing values
+  // get object values so count is accessible
   const allGenres = Object.values(getGenres);
 
   // Sort genres
