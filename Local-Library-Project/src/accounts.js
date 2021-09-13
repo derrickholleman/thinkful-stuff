@@ -53,3 +53,23 @@ function getBooksPossessedByAccount(account, books, authors) {
   return booksCheckedOut
 }
 console.log(getBooksPossessedByAccount(accounts[8], books, authors));
+
+
+// helper function for getTotalNumberOfBorrows
+function filterAndPushToArray(obj, arr, account) {
+  obj.borrows.filter((userInfo) => {
+    userInfo.id === account.id ? arr.push(userInfo.id) : null
+  })
+
+  return arr
+}
+
+function getTotalNumberOfBorrows(account, books) {
+    let accounts = []
+
+    books.forEach((book) => {
+        accounts = filterAndPushToArray(book, accounts, account)
+    })
+
+    return accounts.length
+}
