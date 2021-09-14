@@ -51,15 +51,13 @@ console.log(getMostCommonGenres(books));
 // ----------------------------------- //
 
 function getMostPopularBooks(books) {
-  // Transform books to object with name of title and count of how many borrows
-  const borrows = books.reduce((acc, book) => {
-    let obj = {
+  // Map books to object with title and count of how many borrows
+  const borrows = books.map((book) => {
+    return popularBooks = {
       name: book.title,
-      count: book.borrows.length,
-    };
-    acc.push(obj);
-    return acc;
-  }, []);
+      count: book.borrows.length
+    }
+  })
 
   // Sort new array of objects
   borrows.sort((a, b) => (a.count < b.count ? 1 : -1));
