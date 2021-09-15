@@ -13,12 +13,6 @@ describe("findStudentScoreByName", () => {
     const expected = 7.4
     expect(actual).to.equal(expected);
   });
-  
-  // extra stuff I added
-  it("Should return null if no input is given", () => {
-    const actual = findStudentScoreByName([])
-    expect(actual).to.be.null
-  })
   it("Should return null if no student is given", () => {
     const input = [
         { name: "Leo Yeon-Joo", score: 8.9 },
