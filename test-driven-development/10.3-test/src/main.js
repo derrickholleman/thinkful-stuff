@@ -9,6 +9,6 @@ function findStudentScoreByName(students, name) {
     let studentMatch = students.find((student) => student.name === name)
     return studentMatch ? studentMatch.score : null
 }
-console.log(findStudentScoreByName(students))
+console.log(findStudentScoreByName(students, "Morgan Sutton"))
 
 module.exports = findStudentScoreByName
