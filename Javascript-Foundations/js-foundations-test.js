@@ -50,7 +50,15 @@ const product = {
   name: "Large Jeans",
   priceInCents: 8800,
 };
-
+// function addProductToCart({name,priceInCents},cart={}) {
+//   let cartArr = Object.keys(cart)
+//   if(cartArr.includes(name)){
+//     cart[name]['quantity'] ++
+//   }else{
+//   cart[name] = { priceInCents,'quantity':1}
+//   }
+//   return cart
+// }
 function addProductToCart(product, cart = {}) {
   let newCart;
   const { name, priceInCents, quantity = 1 } = product;
