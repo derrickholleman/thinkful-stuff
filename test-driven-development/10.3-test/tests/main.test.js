@@ -20,5 +20,10 @@ describe("Solution", () => {
       const actual = findStudentScoreByName(students);
       expect(actual).to.be.null;
     });
+    it("Should return null if no student array is given", () => {
+
+      const actual = findStudentScoreByName([]);
+      expect(actual).to.be.null;
+    });
   });
 });
