@@ -5,11 +5,11 @@ const students = [
 ];
 
 function partitionStudentsByScore(students, score) {
-  const array = [];
-  array.push(students.filter((student) => student.score <= score));
-  array.push(students.filter((student) => student.score > score));
-  return array;
+    const allStudents = []
+    allStudents.push(students.filter((student) => student.score <= score))
+    allStudents.push(students.filter((student) => student.score > score))
+    return allStudents
 }
-console.log(partitionStudentsByScore(students, 7))
+console.log(partitionStudentsByScore(students, 8))
 
 module.exports = partitionStudentsByScore;
