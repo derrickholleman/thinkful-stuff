@@ -1,5 +1,6 @@
 const partitionStudentsByScore = require("../src/index");
-const expect = require("chai").expect;
+const {expect} = require("chai");
+
 describe("Solution Functions", () => {
   const students = [
     { name: "Leo Yeon-Joo", score: 8.9 },
