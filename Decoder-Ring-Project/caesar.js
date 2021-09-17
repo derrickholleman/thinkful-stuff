@@ -12,11 +12,7 @@ function caesar(input, shift, encode = true) {
   for (let i = 0; i < lowerCaseStr.length; i++) {
     let currentLetter = lowerCaseStr[i];
 
-    if (
-      currentLetter === " " ||
-      currentLetter === "!" ||
-      currentLetter === "."
-    ) {
+    if (alphabet.includes(currentLetter) === false) {
       // add the non-letter character and skip the rest of the loop for that character
       encodedMessage += currentLetter;
       continue;
@@ -41,6 +37,6 @@ function caesar(input, shift, encode = true) {
   return encodedMessage;
 }
 
-console.log(caesar("hello.", 8));
+console.log(caesar("hello!@", 8));
 
-module.exports = caesar;
+module.exports = { caesar };
