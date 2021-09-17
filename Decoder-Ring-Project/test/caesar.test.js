@@ -12,7 +12,7 @@ describe("caesar", () => {
     const expected = "thinkful";
     expect(actual).to.equal(expected);
   });
-  it("It should return false if the shift value is equal to 0, less than -25, greater than 25, or not present", () => {
+  it("should return false if the shift value is equal to 0, less than -25, greater than 25, or not present", () => {
     const actual = caesar("Cheud Pdjdclqh", 27);
     expect(actual).to.be.false;
   });
@@ -30,5 +30,10 @@ describe("caesar", () => {
     const actual = caesar("This is a secret message!", 8);
     const expected = "bpqa qa i amkzmb umaaiom!";
     expect(actual).to.equal(expected);
+    expect(actual).to.include(" ");
   });
+  it("output should be a string", () => {
+    const actual = caesar("thinkful", 3);
+    expect(actual).to.be.a("string")
+  })
 });
