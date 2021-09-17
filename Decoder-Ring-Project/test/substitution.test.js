@@ -1,4 +1,4 @@
-const {substitution} = require("../substitution")
+const {substitution} = require("../src/substitution")
 const {expect} = require("chai")
 
 describe("substitution", () => {
