@@ -18,7 +18,7 @@
         if (leftPosition < 200) {
           console.log(`Before animateDiv`);
         //   animateDiv();
-        // requestAnimationFrame(animateDiv) is an async function so it allows other code to run while it is executing.  having a synchronous function like animateDiv() blocks the rest of the code from executing until it's done.  so requestAnimationFrame() at the end of the code never gets executed
+        // requestAnimationFrame(animateDiv) is an async function so it allows other code to run while it is executing.  having a synchronous function like animateDiv() blocks the rest of the code from executing until it's done so requestAnimationFrame() at the end of the code never gets executed
           requestAnimationFrame(animateDiv);
           console.log(`After animateDiv`);
         }
@@ -26,6 +26,7 @@
         console.log(`End animateDiv`);
       }
 
+      // calls animateDiv() on page load
       requestAnimationFrame(animateDiv);
     </script>
   </body>
