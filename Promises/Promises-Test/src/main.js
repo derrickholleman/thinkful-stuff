@@ -9,17 +9,27 @@ function getFortune(question) {
     })
     .catch((error) => `There was an error: ${error}`);
 }
-getFortune(question)
+getFortune(question);
 
 function fullSession(question) {
-    return welcome()
-      .then((welcomeMessage) =>
+  return welcome()
+    .then((welcomeMessage) =>
       // this is the array from the previous question
-        getFortune(question).then((response) => [welcomeMessage].concat(response))
+      //   getFortune(question).then((response) => [welcomeMessage].concat(response))
+      tell(question).then((tellResponse) =>
+        [welcomeMessage].concat(question, tellResponse)
       )
-      .then((bye) => goodbye().then((goodbyeMessage) => bye.concat(goodbyeMessage)))
-      .catch((error) => `There was an error: ${error}`);
-};
-fullSession(question)
+    )
+    .then((fortuneRes) =>
+      goodbye().then((goodbyeMessage) =>
+        console.log(fortuneRes.concat(goodbyeMessage))
+      )
+    )
+    .catch((error) => `There was an error: ${error}`);
+}
+fullSession(question);
+
+// return new Promise
+// get data from welcome, then take the data from welcome, combine it with the data from tell question and concat it together
 
 module.exports = { getFortune, fullSession };
