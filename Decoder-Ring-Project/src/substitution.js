@@ -23,6 +23,7 @@ function substitution(input, alphabet, encode = true) {
     if (encode === true) {
       // currentChar is character at current index in for loop
       currentChar = word.charAt(i);
+      // set index as the number of the current index
       index = alpha.indexOf(currentChar);
       // check for non alphabetical characters (they have index of -1)
       if (index === -1) {
