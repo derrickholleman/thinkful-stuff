@@ -12,11 +12,10 @@ tell(question)
     // console.logging declared question variable
     console.log(question);
     // console.logging the response from the tell() promise
-    console.log(response);
+    console.log(response)
   })
+  .then(() => goodbye().then(res => console.log(res)))
   .catch((err) => {
     // returns error or reject message from tell() if no question
     console.error(err);
   });
-
-goodbye().then((res) => console.log(res));
