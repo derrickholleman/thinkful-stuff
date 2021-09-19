@@ -13,13 +13,12 @@ getFortune(question);
 
 function fullSession(question) {
   return welcome()
-    .then((welcomeMessage) =>
+    .then((welcomeMessage) => {
       // this is the array from the previous question
       //   getFortune(question).then((response) => [welcomeMessage].concat(response))
-      tell(question).then((tellResponse) =>
-        [welcomeMessage].concat(question, tellResponse)
-      )
-    )
+      return tell(question).then((tellResponse) =>
+        [welcomeMessage].concat(question, tellResponse))
+    })
     .then((fortuneRes) =>
       goodbye().then((goodbyeMessage) =>
         console.log(fortuneRes.concat(goodbyeMessage))
