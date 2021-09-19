@@ -14,21 +14,30 @@ getFortune(question);
 function fullSession(question) {
   return welcome()
     .then((welcomeMessage) => {
-      // this is the array from the previous question
-      //   getFortune(question).then((response) => [welcomeMessage].concat(response))
-      return tell(question).then((tellResponse) =>
-        [welcomeMessage].concat(question, tellResponse))
+      return getFortune(question).then((response) =>
+        [welcomeMessage].concat(response)
+      );
     })
-    .then((fortuneRes) =>
-      goodbye().then((goodbyeMessage) =>
-        console.log(fortuneRes.concat(goodbyeMessage))
-      )
-    )
+    .then((fortuneRes) => {
+      return goodbye().then((goodbyeMessage) => {
+        return fortuneRes.concat(goodbyeMessage);
+      });
+    })
     .catch((error) => `There was an error: ${error}`);
 }
 fullSession(question);
 
-// return new Promise
-// get data from welcome, then take the data from welcome, combine it with the data from tell question and concat it together
+// done with async/await
+async function fullSession(question) {
+  try {
+    const welcomeMessage = await welcome();
+    const fortuneResponse = await getFortune(question);
+    let resArray = [welcomeMessage].concat(fortuneResponse);
+    const goodbyeMessage = await goodbye();
+    return resArray.concat(goodbyeMessage);
+  } catch (err) {
+    return `There was an error: ${err}`;
+  }
+}
 
 module.exports = { getFortune, fullSession };
