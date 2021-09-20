@@ -23,15 +23,14 @@ axios
 // promise chaining test
 // function updateIfExists(id, body) {
 //   const url = `${BASE_URL}/constellations/${id}`;
-//   return axios
-//     .get(url)
-//     .then(() => {
-//       return axios.put(url, body);
-//     })
-//     .then((response) => {
-//       return response.data;
-//     })
-//     .catch((error) => {
-//       return error.message;
-//     });
+//   return axios.get(url)
+//   .then((response) => {
+//     return axios.put(url, body)
+//   })
+//   .then((response) => {
+//     return response.data
+//   })
+//   .catch((err) => {
+//     return err.message
+//   })
 // }
