@@ -1,0 +1,19 @@
+async function getData() {
+    try {
+        const res = await axios.get(url)
+        const data = await res.data
+        // filter/map/sort data
+        return await data
+    } catch(err) {
+        return console.error(err)
+    }
+}
+
+function getAllNames() {
+    axios.get(url)
+    .then((response) => {
+      let result = response.data.map((constellation) => constellation.name)
+      return result
+    })
+    .catch((err) => console.error(err))
+}
