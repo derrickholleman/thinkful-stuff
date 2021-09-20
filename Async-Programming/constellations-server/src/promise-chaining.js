@@ -2,8 +2,8 @@ const axios = require("axios");
 const BASE_URL = "http://localhost:5000/constellations";
 
 const leo = {
-  name: "Derrick",
-  meaning: "Star",
+  name: "Hello",
+  meaning: "World",
   starsWithPlanets: 19,
   quadrant: "NQ2",
 };
@@ -11,7 +11,7 @@ const leo = {
 axios
   .get(BASE_URL)
   .then((response) => {
-    return response.data.find(({ name }) => name === leo.name);
+    return response.data.find((constellation) => constellation.name === leo.name);
   })
   .then((response) => {
     if (response) throw "name already exists";
