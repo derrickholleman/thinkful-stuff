@@ -111,27 +111,6 @@
       "starsWithPlanets": 3,
       "quadrant": "NQ1",
       "id": "2E0S8QU"
-    },
-    {
-      "name": "Tigger",
-      "meaning": "Tiger",
-      "starsWithPlanets": 19,
-      "quadrant": "NQ2",
-      "id": "a6nq0Im"
-    },
-    {
-      "name": "Derrick",
-      "meaning": "Star",
-      "starsWithPlanets": 19,
-      "quadrant": "NQ2",
-      "id": "Zgka2gI"
-    },
-    {
-      "name": "Hello",
-      "meaning": "World",
-      "starsWithPlanets": 19,
-      "quadrant": "NQ2",
-      "id": "7crpGMy"
     }
   ]
 }
