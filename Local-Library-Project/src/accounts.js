@@ -50,26 +50,19 @@ function getBooksPossessedByAccount(account, books, authors) {
       booksCheckedOut.push({ id, title, genre, authorId, author, borrows });
     }
   });
-  return booksCheckedOut
+  return booksCheckedOut;
 }
 console.log(getBooksPossessedByAccount(accounts[8], books, authors));
 
-
-// helper function for getTotalNumberOfBorrows
-function filterAndPushToArray(obj, arr, account) {
-  obj.borrows.filter((userInfo) => {
-    userInfo.id === account.id ? arr.push(userInfo.id) : null
-  })
-
-  return arr
-}
-
 function getTotalNumberOfBorrows(account, books) {
-    let accounts = []
+  let total = 0;
 
-    books.forEach((book) => {
-        accounts = filterAndPushToArray(book, accounts, account)
-    })
-
-    return accounts.length
+  books.forEach((book) => {
+    book.borrows.forEach((user) => {
+      if (user.id === account.id) {
+        total++;
+      }
+    });
+  });
+  return total;
 }
