@@ -3,7 +3,7 @@ async function getData() {
         const res = await axios.get(url)
         const data = await res.data
         // filter/map/sort data
-        return await data
+        return data
     } catch(err) {
         return console.error(err)
     }
