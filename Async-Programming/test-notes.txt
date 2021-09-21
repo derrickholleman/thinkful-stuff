@@ -1,0 +1,10 @@
+UPDATE()
+1. create async function update().  try, catch.
+2. create an axios PUT request to the ID of the constellation.
+3. catch the error with specified error message
+
+BULKIMPORT()
+1. try, catch.
+2. if array isn't an array, throw an error.
+3. check if every constellation is a valid constellation.  if so, return a promise.allsettled that maps each constellation to the update() function
+4.  else, throw an error that constellations must have valid fields
