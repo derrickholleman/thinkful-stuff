@@ -46,3 +46,16 @@ async function getAllCountries() {
   }
 }
 getAllCountries();
+
+// fetch 
+function getCountries() {
+  fetch("https://restcountries.eu/rest/v2/all")
+  .then((response) => response.json())
+  .then((data) => console.log(data.map(country => {
+    let {name, region, population} = country
+
+    return `${name} is located in ${region} and has a population of ${population}`
+  }).slice(0, 5)))
+  .catch((err) => console.error(err))
+}
+getCountries()

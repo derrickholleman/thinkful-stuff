@@ -8,3 +8,13 @@ async function getRates(rates) {
     console.log(data.rates)
 }
 getRates('USD')
+
+// fetch 
+// function getRates(rates) {
+//     const url = `https://api.frankfurter.app/latest?from=${rates}`
+//     fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => console.log(data.rates))
+//     .catch((err) => console.error(err))
+// }
+// getRates('USD')

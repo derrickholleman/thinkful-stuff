@@ -20,3 +20,30 @@ async function getMovie() {
   }
 }
 getMovie();
+
+function getMovie() {
+  fetch(`https://ghibliapi.herokuapp.com/films`)
+    .then((response) => response.json())
+    .then((data) => {
+      // make keys of movie name and values of movie info
+      let allMovies = data.reduce((acc, movie) => {
+        if (!acc[movie.title]) {
+          acc[movie.title] = [];
+
+          acc[movie.title].push(movie);
+          return acc;
+        }
+      }, {});
+      // return object of movie, director and movie info separately
+      for (let movie in allMovies) {
+        let movieObj = {
+          movie: movie,
+          director: allMovies[movie][0].director,
+          movieInfo: allMovies[movie]
+        }
+        console.log(movieObj)
+      }
+    })
+    .catch((err) => console.error(err));
+}
+getMovie();
