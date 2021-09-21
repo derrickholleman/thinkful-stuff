@@ -28,6 +28,18 @@ function fullSession(question) {
 fullSession(question);
 
 // done with async/await
+async function getFortune(question) {
+  try {
+    const fortune = await tell(question);
+    const fortuneRes = [
+      `Your question was: ${question}`,
+      `Your fortune is: ${fortune}`,
+    ];
+    return fortuneRes;
+  } catch (err) {
+    return `There was an error: ${err}`;
+  }
+}
 async function fullSession(question) {
   try {
     const welcomeMessage = await welcome();

@@ -2,7 +2,7 @@ const axios = require("axios");
 
 // async function getUsers() {
 //   const response = await axios.get("https://randomuser.me/api/?results=5&nat=us")
-//   const data = await response.data
+//   const data = response.data
 //   console.log(data.results.map((result) => {
 //     let {name: {first, last}, location: {city}} = result
 //     return personObj = {
@@ -24,7 +24,7 @@ const axios = require("axios");
 async function getPokeInfo() {
     try {
         const response = await axios.get("https://pokeapi.co/api/v2/pokemon/squirtle")
-        const data = await response.data
+        const data = response.data
 
         let allAbilities = data.abilities.map((ability) => 
         ability.ability.name)
