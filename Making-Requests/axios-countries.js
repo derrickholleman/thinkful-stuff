@@ -2,7 +2,7 @@ const axios = require("axios");
 //Write your functions here
 
 // async function getAllCountries() {
-//   const url = `https://restcountries.eu/rest/v2/all`;
+//   const url = `https://restcountries.com/v2/all`;
 //   const result = await axios.get(url);
 //   const data = result.data;
 //   const countries = [];
@@ -24,7 +24,7 @@ const axios = require("axios");
 
 async function getAllCountries() {
   try {
-    const url = "https://restcountries.eu/rest/v2/all";
+    const url = "https://restcountries.com/v2/all";
     const res = await axios.get(url);
     const data = res.data;
     let africanCountries = data.filter((country) => country.region === "Africa").map((country) => {
@@ -49,7 +49,7 @@ getAllCountries();
 
 // fetch 
 function getCountries() {
-  fetch("https://restcountries.eu/rest/v2/all")
+  fetch("https://restcountries.com/v2/all")
   .then((response) => response.json())
   .then((data) => console.log(data.map(country => {
     let {name, region, population} = country
