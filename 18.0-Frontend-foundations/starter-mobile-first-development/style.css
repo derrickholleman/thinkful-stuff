@@ -1,5 +1,17 @@
+body {
+  overflow-x: hidden;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+img {
+  width: 100%;
+  height: auto;
+}
 main {
-  margin-top: 60;
+  margin-top: 60px;
 }
 
 main h1 {
@@ -26,4 +38,35 @@ main h3 {
 main p {
   font-family: "Roboto", sans-serif;
   margin-top: 0;
+}
+
+.group-1 {
+  display: flex;
+  margin: 2rem 3rem 6rem 3rem;
+}
+.group-1-column {
+  flex: 1;
+}
+.group-1-image {
+  flex: 2;
+  margin-left: 2rem;
+}
+
+.group-2 {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem 2rem 6rem 2rem;
+}
+.group-2-subgroup {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1rem;
+}
+
+.group-3 {
+  display: flex;
+  margin: 2rem;
+}
+.group-3 .item {
+  margin: .5rem;
 }
