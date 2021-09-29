@@ -1,4 +1,6 @@
 import "./App.css";
+import WelcomeBack from "./Components/WelcomeBack";
+import Header from "./Components/Header";
 
 function App() {
   const shirts = 4;
@@ -7,11 +9,18 @@ function App() {
 
   return (
     <main>
+      <Header />
       <p className="paragraph">
         Purchased {shirts} shirts and {pants} pants for a total of{" "}
         {shirts + pants} items
       </p>
-      <a href={website} target="_blank" rel="noreferrer">Website</a>
+      <a href={website} target="_blank" rel="noreferrer">
+        Website
+      </a>
+
+      {/* passing props */}
+      <WelcomeBack />
+      <WelcomeBack name="Derrick" adjective="smarty pants" />
     </main>
   );
 }
