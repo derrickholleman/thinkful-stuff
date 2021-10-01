@@ -18,4 +18,4 @@ const SubscriberView = ({ subscriber }) => {
   );
 };
 
-export default SubscriberView;
+export default SubscriberView; is it fixed?
