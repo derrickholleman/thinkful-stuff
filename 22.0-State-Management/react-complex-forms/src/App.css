@@ -2,3 +2,17 @@
   text-align: center;
 }
 
+input {
+  margin: .5rem 0;
+}
+fieldset {
+  margin: .5rem 0;
+}
+
+button {
+  margin: 1rem 0;
+}
+
+#low, #middle, #high {
+  margin: 0 .5rem;
+}
