@@ -1,7 +1,7 @@
 import './App.css';
-import SubButton from './Components/SubButton';
-import CountButton from './Components/CountButton'
-import IncrementButtons from './Components/IncrementButtons';
+import SubButton from './SubButton';
+import CountButton from './CountButton'
+import IncrementButtons from './IncrementButton';
 
 function App() {
   return (
