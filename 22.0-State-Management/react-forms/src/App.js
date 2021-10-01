@@ -8,10 +8,8 @@ function App() {
   const [subscribers, setSubscribers] = useState([]);
 
   const createSubscriber = (newSubscriber) =>
-    setSubscribers((subscribers) => [
-      newSubscriber,
-      ...subscribers,
-    ]);
+    // newSubscriber takes in name and email destructured values from Form component
+    setSubscribers((subscribers) => [newSubscriber, ...subscribers]);
 
   const deleteSubscriber = (indexToDelete) =>
     setSubscribers((subscribers) =>
