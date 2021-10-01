@@ -13,7 +13,7 @@ function App() {
 
   const deleteSubscriber = (indexToDelete) =>
     setSubscribers((subscribers) =>
-      subscribers.filter((user, index) => index !== indexToDelete)
+      subscribers.filter((subscriber, index) => index !== indexToDelete)
     );
 
   return (
