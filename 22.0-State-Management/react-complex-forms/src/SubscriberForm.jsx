@@ -6,22 +6,26 @@ const SubscriberForm = ({ createSubscriber }) => {
     email: "",
     referral: "",
     age: "",
+    subscription: true,
   };
   const [formData, setFormData] = useState({ ...initialFormState });
   const handleChange = ({ target }) => {
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    let value
+    // if input type is a checkbox, set value to listen for checked="", else listen for value=""
+    target.type === "checkbox" ? value = target.checked : value = target.value
     setFormData({
       ...formData,
-      [target.name]: value,
+      // need .id to reference the specific key within initialFormState
+      [target.id]: value,
     });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Submitted:", formData);
-    // setting form data
+    // setting form data back to empty on submit
     setFormData({ ...initialFormState });
-    // creating subscriber from form data
+    // render subscriber text from form data
     createSubscriber({ ...formData });
   };
 
@@ -100,6 +104,18 @@ const SubscriberForm = ({ createSubscriber }) => {
           />
         </label>
       </fieldset>
+      <label htmlFor="subscription">
+        Receive email notifications?
+        <input
+          id="subscription"
+          type="checkbox"
+          name="subscription"
+          onChange={handleChange}
+          // checked is boolean value
+          checked={formData.subscription}
+          value="subscription"
+        />
+      </label>
       <button type="submit">Submit</button>
     </form>
   );

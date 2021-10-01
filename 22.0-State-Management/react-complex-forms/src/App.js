@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from 'react'
 import SubscriberForm from "./SubscriberForm";
 import SubscriberList from "./SubscriberList";
+import RSVPForm from "./RSVPForm";
 
 function App() {
   const [subscribers, setSubscribers] = useState([]);
@@ -16,6 +17,8 @@ function App() {
     <div className="App">
       <SubscriberForm createSubscriber={createSubscriber}/>
       <SubscriberList subscribers={subscribers}/>
+      
+      <RSVPForm />
     </div>
   );
 }
