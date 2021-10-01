@@ -18,6 +18,4 @@ const SubscriberView = ({ subscriber }) => {
   );
 };
 
-Hello
-
 export default SubscriberView;
