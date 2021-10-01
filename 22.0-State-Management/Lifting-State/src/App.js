@@ -14,7 +14,6 @@ function App() {
       <Header
         loggedIn={loggedIn}
         handleLoggedInClick={toggleLoggedIn}
-        fontSize={fontSize}
         increaseFontSize={increaseFontSize}
       />
       <Content loggedIn={loggedIn} fontSize={fontSize} />
