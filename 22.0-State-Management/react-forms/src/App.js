@@ -13,7 +13,7 @@ function App() {
 
   const deleteSubscriber = (indexToDelete) =>
     setSubscribers((subscribers) =>
-      subscribers.filter((subscriber, index) => index !== indexToDelete)
+      subscribers.filter((placeholder, index) => index !== indexToDelete)
     );
 
   return (
@@ -21,6 +21,7 @@ function App() {
       <SubscriberForm createSubscriber={createSubscriber} />
       <SubscriberList
         subscribers={subscribers}
+        // provide each subscriber with a delete functionality
         deleteSubscriber={deleteSubscriber}
       />
       <DogForm />
