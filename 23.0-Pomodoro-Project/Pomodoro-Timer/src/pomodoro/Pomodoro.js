@@ -32,9 +32,8 @@ function nextTick(prevState) {
  *  function to update the session state.
  */
 function nextSession(focusDuration, breakDuration) {
-  // this function sets state for the session
+  // this function sets state for the upcoming session
   return (currentSession) => {
-    console.log(currentSession)
     if (currentSession.label === "Focusing") {
       return {
         label: "On Break",
@@ -58,11 +57,13 @@ function Pomodoro() {
 
   useInterval(
     () => {
+      // if time is up, execute this code
       if (session.timeRemaining === 0) {
         new Audio("https://bigsoundbank.com/UPLOAD/mp3/1482.mp3").play();
         // set session as session.label, session.timeRemaining
         return setSession(nextSession(focusDuration, breakDuration));
       }
+      // else get the next tick
       return setSession(nextTick);
     },
     isTimerRunning ? 1000 : null
