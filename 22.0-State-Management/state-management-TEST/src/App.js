@@ -13,9 +13,6 @@ function App() {
       posts.filter((placeholder, index) => index !== indexToDelete)
     );
 
-  // TODO: Add the ability for the <PostCreate /> component to create new posts.
-  // TODO: Add the ability for the <PostList /> component to delete an existing post.
-
   return (
     <div className="App">
       <PostCreate createPost={createPost} />

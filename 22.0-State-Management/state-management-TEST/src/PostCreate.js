@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 
-/**
- * Displays the form to create a new post, which can be either an image or a text post.
- *
- * When the form is submitted, a new post is created and the form contents cleared.
- */
 function PostCreate({ createPost }) {
   const [type, setType] = useState("Text");
-  const [content, setContent] = useState("");
+  const [textContent, setTextContent] = useState("");
+  const [imageContent, setImageContent] = useState("");
 
   const handleTypeChange = (e) => {
     setType(e.target.value);
@@ -15,11 +11,10 @@ function PostCreate({ createPost }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost(content);
-    setContent("");
+    createPost({textContent, imageContent});
+    setTextContent('');
+    setImageContent('')
   };
-
-  // TODO: When the form is submitted, a new post should be created, and the form contents cleared.
 
   return (
     <form name="create" onSubmit={handleSubmit}>
@@ -47,8 +42,8 @@ function PostCreate({ createPost }) {
               name="content"
               required={true}
               rows={3}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              value={textContent}
+              onChange={(e) => setTextContent(e.target.value)}
             />
           ) : (
             <input
@@ -56,8 +51,8 @@ function PostCreate({ createPost }) {
               name="content"
               type="url"
               required={true}
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              value={imageContent}
+              onChange={(e) => setImageContent(e.target.value)}
             />
           )}
         </div>
