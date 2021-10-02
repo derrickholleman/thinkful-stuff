@@ -15,13 +15,13 @@ const CoinTossCounter = () => {
     return results; // need this to check current array status
   };
   const handleDeleteLast = () => {
-    const last = results[results.length - 1] // gets last value from results array
-    const list = results.slice(0, -1); // slices the last element from the results array
+    const last = results[results.length - 1] // gets (results[i] i being "H" or "T"). length - 1 is the last index
+    const list = results.slice(0, -1); // slices the last element out of the results array
 
     setResults(list);
 
     if (last) {
-        // if there's a last value, update counts with the last value - 1
+        // if there's a last value, decrement count of that value by 1
       setCounts({
         ...counts,
         [last]: counts[last] - 1,
