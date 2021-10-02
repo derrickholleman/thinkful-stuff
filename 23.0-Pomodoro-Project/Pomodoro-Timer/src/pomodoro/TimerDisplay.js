@@ -33,7 +33,7 @@ const TimerDisplay = ({
           </div>
         </div>
       )}
-      <div className="row mb-2">
+      {session && <div className="row mb-2">
         <div className="col">
           <div className="progress" style={{ height: "20px" }}>
             <div
@@ -60,7 +60,7 @@ const TimerDisplay = ({
             />
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

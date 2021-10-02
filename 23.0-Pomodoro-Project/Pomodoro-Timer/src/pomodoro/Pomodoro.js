@@ -65,7 +65,7 @@ function Pomodoro() {
       }
       return setSession(nextTick);
     },
-    isTimerRunning ? 10 : null
+    isTimerRunning ? 1000 : null
   );
 
   return (

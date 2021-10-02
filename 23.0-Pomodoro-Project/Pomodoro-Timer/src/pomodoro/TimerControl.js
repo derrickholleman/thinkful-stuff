@@ -4,7 +4,6 @@ import classNames from "../utils/class-names";
 const TimerControl = ({
   isTimerRunning,
   setIsTimerRunning,
-  session,
   setSession,
   focusDuration,
 }) => {
