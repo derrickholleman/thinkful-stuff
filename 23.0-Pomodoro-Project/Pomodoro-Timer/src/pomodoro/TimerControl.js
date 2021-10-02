@@ -1,19 +1,14 @@
 import React from "react";
 import classNames from "../utils/class-names";
 
-
-
 const TimerControl = ({
   isTimerRunning,
   setIsTimerRunning,
   session,
   setSession,
-  focusDuration
+  focusDuration,
 }) => {
-  /**
-   * Called whenever the play/pause button is clicked.
-   */
-   function playPause() {
+  function playPause() {
     setIsTimerRunning((prevState) => {
       const nextState = !prevState;
       if (nextState) {
@@ -32,6 +27,12 @@ const TimerControl = ({
       return nextState;
     });
   }
+
+  const handleStopSession = () => {
+    setIsTimerRunning(false);
+    setSession(null);
+  };
+
   return (
     <div className="row">
       <div className="col">
@@ -55,13 +56,13 @@ const TimerControl = ({
               })}
             />
           </button>
-          {/* TODO: Implement stopping the current focus or break session. and disable the stop button when there is no active session */}
-          {/* TODO: Disable the stop button when there is no active session */}
           <button
             type="button"
             className="btn btn-secondary"
             data-testid="stop"
             title="Stop the session"
+            onClick={handleStopSession}
+            disabled={!isTimerRunning}
           >
             <span className="oi oi-media-stop" />
           </button>

@@ -1,22 +1,38 @@
 import React from "react";
+import { secondsToDuration, minutesToDuration } from "../utils/duration";
 
-const TimerDisplay = ({ session }) => {
-    
+const TimerDisplay = ({
+  session,
+  focusDuration,
+  breakDuration,
+  isTimerRunning,
+}) => {
   return (
     <div>
-      {/* TODO: This area should show only when there is an active focus or break - i.e. the session is running or is paused */}
-      <div className="row mb-2">
-        <div className="col">
-          {/* TODO: Update message below to include current session (Focusing or On Break) total duration */}
-          <h2 data-testid="session-title">
-            {session?.label} for 25:00 minutes
-          </h2>
-          {/* TODO: Update message below correctly format the time remaining in the current session */}
-          <p className="lead" data-testid="session-sub-title">
-            {session?.timeRemaining} remaining
-          </p>
+      {session && (
+        <div className="row mb-2">
+          <div className="col">
+            <h2 data-testid="session-title">
+              {session?.label === "Focusing" && (
+                <p>
+                  {session?.label} for {minutesToDuration(focusDuration)}{" "}
+                  minutes
+                </p>
+              )}
+              {session?.label === "On Break" && (
+                <p>
+                  {session?.label} for {minutesToDuration(breakDuration)}{" "}
+                  minutes
+                </p>
+              )}
+            </h2>
+            <p className="lead" data-testid="session-sub-title">
+              {secondsToDuration(session?.timeRemaining)} remaining
+            </p>
+            {!isTimerRunning && <h3>PAUSED</h3>}
+          </div>
         </div>
-      </div>
+      )}
       <div className="row mb-2">
         <div className="col">
           <div className="progress" style={{ height: "20px" }}>
@@ -25,8 +41,22 @@ const TimerDisplay = ({ session }) => {
               role="progressbar"
               aria-valuemin="0"
               aria-valuemax="100"
-              aria-valuenow="0" // TODO: Increase aria-valuenow as elapsed time increases
-              style={{ width: "0%" }} // TODO: Increase width % as elapsed time increases
+              aria-valuenow={
+                100 -
+                (100 * session?.timeRemaining) /
+                  (session?.label === "Focusing"
+                    ? focusDuration * 60
+                    : breakDuration * 60)
+              }
+              style={{
+                width: `${
+                  100 -
+                  (100 * session?.timeRemaining) /
+                    (session?.label === "Focusing"
+                      ? focusDuration * 60
+                      : breakDuration * 60)
+                }%`,
+              }}
             />
           </div>
         </div>

@@ -65,7 +65,7 @@ function Pomodoro() {
       }
       return setSession(nextTick);
     },
-    isTimerRunning ? 1000 : null
+    isTimerRunning ? 10 : null
   );
 
   return (
@@ -90,7 +90,11 @@ function Pomodoro() {
       />
 
       {/* FOCUSING TIME DISPLAY AND PROGRESS BAR */}
-      <TimerDisplay session={session} />
+      <TimerDisplay 
+      session={session} 
+      focusDuration={focusDuration}
+      breakDuration={breakDuration}
+      isTimerRunning={isTimerRunning}/>
     </div>
   );
 }
