@@ -32,10 +32,9 @@ function nextTick(prevState) {
  *  function to update the session state.
  */
 function nextSession(focusDuration, breakDuration) {
-  /**
-   * State function to transition the current session type to the next session. e.g. On Break -> Focusing or Focusing -> On Break
-   */
+  // this function sets state for the session
   return (currentSession) => {
+    console.log(currentSession)
     if (currentSession.label === "Focusing") {
       return {
         label: "On Break",
@@ -61,6 +60,7 @@ function Pomodoro() {
     () => {
       if (session.timeRemaining === 0) {
         new Audio("https://bigsoundbank.com/UPLOAD/mp3/1482.mp3").play();
+        // set session as session.label, session.timeRemaining
         return setSession(nextSession(focusDuration, breakDuration));
       }
       return setSession(nextTick);
