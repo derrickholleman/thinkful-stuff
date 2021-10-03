@@ -28,7 +28,7 @@ const PokemonFetch = () => {
         <PokemonDisplay key={mon.id} pokemon={mon} />
       ))}
 
-      {loading && <p>Loading...</p>}
+      {loading && <p>Loading Pokemon...</p>}
     </div>
   );
 };
