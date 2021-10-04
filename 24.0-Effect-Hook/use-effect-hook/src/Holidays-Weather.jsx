@@ -5,8 +5,10 @@ const GetHolidaysAndWeather = () => {
   const [holidays, setHolidays] = useState([]);
   const [city, setCity] = useState("");
   const URIEncodedCity = encodeURI(city);
+  const [loading, setLoading] = useState(true);
 
   async function getWeather() {
+    setLoading(true);
     const weatherResponse = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${URIEncodedCity}&units=imperial&APPID=8f80c75db7eb418e222f8e5f845d5ab1`
     );
@@ -20,6 +22,7 @@ const GetHolidaysAndWeather = () => {
       );
       const holidaysJSON = await holidaysResponse.json();
       setHolidays(holidaysJSON);
+      setLoading(false);
     }
   }
 
@@ -27,8 +30,6 @@ const GetHolidaysAndWeather = () => {
     e.preventDefault();
     getWeather();
   };
-
-//   console.log(holidays.response.holidays)
 
   return (
     <div>
@@ -42,15 +43,20 @@ const GetHolidaysAndWeather = () => {
         <button type="submit">Submit</button>
       </form>
 
-      {weather.map((data) => (
-        <p key={data.id}>
-          It is {data.main.temp} degrees in {data.name}. Here are the holidays
-          in {data.name}
-        </p>
-      ))}
-      {holidays.response.holidays.map((holiday, index) => (
-        <p key={index}>{holiday.name}</p>
-      ))}
+      {/* make sure data is done loading before rendering to page */}
+      {!loading && (
+        <div>
+          {weather.map((data) => (
+            <p key={data.id}>
+              It is {data.main.temp} degrees in {data.name}. Here are the
+              holidays in {data.name}
+            </p>
+          ))}
+          {holidays.response.holidays.map((holiday, index) => (
+            <p key={index}>{holiday.name}</p>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
