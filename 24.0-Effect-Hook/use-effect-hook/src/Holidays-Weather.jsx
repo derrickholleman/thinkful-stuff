@@ -60,7 +60,7 @@ const GetHolidaysAndWeather = () => {
           ))}
         </div>
       )}
-      {loading && <h2>Loading Weather Data...</h2>}
+      {loading && weather.length > 0 && <h2>Loading Weather Data...</h2>}
     </div>
   );
 };
