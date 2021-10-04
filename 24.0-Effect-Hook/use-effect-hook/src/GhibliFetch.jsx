@@ -15,8 +15,9 @@ const GhibliFetch = () => {
         return console.error(err);
       }
     }
-
-    getMovies();
+    if (movies) {
+      getMovies();
+    }
   }, []);
 
   return (
