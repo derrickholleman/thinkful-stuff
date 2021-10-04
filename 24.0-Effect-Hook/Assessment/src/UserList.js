@@ -1,16 +1,19 @@
 import React from "react";
 
-function UserList({ users, setCurrentUser }) {
+function UserList({ users, setCurrentUser, loading }) {
   return (
-    <ul className="user-list">
-      {users.map((user) => (
-        <li key={user.id}>
-          <button type="button" onClick={() => setCurrentUser(user)}>
-            {user.name}
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div>
+    {loading && <h3>Loading users...</h3>}
+      <ul className="user-list">
+        {users.map((user) => (
+          <li key={user.id}>
+            <button type="button" onClick={() => setCurrentUser(user)}>
+              {user.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
