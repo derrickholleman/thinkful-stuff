@@ -34,7 +34,7 @@ const GetHolidaysAndWeather = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="city">Enter a city: </label>
+        <label htmlFor="city">Enter a city to get the weather from: </label>
         <input
           type="text"
           value={city}
