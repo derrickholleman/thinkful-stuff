@@ -9,7 +9,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [albums, setAlbums] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     document.title = "Awesome Album App";
@@ -27,7 +27,13 @@ function App() {
         />
       </div>
       <div className="right column">
-        <AlbumList user={currentUser} albums={albums} setAlbums={setAlbums} loading={loading} setLoading={setLoading}/>
+        <AlbumList
+          user={currentUser}
+          albums={albums}
+          setAlbums={setAlbums}
+          loading={loading}
+          setLoading={setLoading}
+        />
       </div>
     </div>
   );

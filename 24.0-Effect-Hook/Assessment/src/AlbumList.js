@@ -34,7 +34,9 @@ function AlbumList({ user, albums, setAlbums, loading, setLoading }) {
   return (
     <div>
       {!user.name && <p>Please click on a user name to the left</p>}
+
       {loading && <h3 style={{"color":"red"}}>Loading {user.name} albums...</h3>}
+      
       <h2>{user.name}</h2>
       {albums.map((album) => (
         <p key={album.id}>
