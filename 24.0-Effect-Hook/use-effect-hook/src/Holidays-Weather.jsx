@@ -7,28 +7,31 @@ const GetHolidaysAndWeather = () => {
   const URIEncodedCity = encodeURI(city);
   const [loading, setLoading] = useState(true);
 
-  async function getWeather() {
+  async function getAllData() {
     setLoading(true);
+
+    // fetch weather
     const weatherResponse = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${URIEncodedCity}&units=imperial&APPID=8f80c75db7eb418e222f8e5f845d5ab1`
     );
     const weatherJSON = await weatherResponse.json();
     setWeather([weatherJSON]);
-    getHolidays(weatherJSON.sys.country);
 
-    async function getHolidays(country) {
-      const holidaysResponse = await fetch(
-        `https://calendarific.com/api/v2/holidays?&api_key=acdb2623ea9e104cd44f12da479c5d188225df0a&type=national&year=2021&country=${country}`
-      );
-      const holidaysJSON = await holidaysResponse.json();
-      setHolidays(holidaysJSON);
-      setLoading(false);
-    }
+    // get country code from weather data
+    const countryCode = weatherJSON.sys.country;
+
+    // fetch holidays
+    const holidaysResponse = await fetch(
+      `https://calendarific.com/api/v2/holidays?&api_key=acdb2623ea9e104cd44f12da479c5d188225df0a&type=national&year=2021&country=${countryCode}`
+    );
+    const holidaysJSON = await holidaysResponse.json();
+    setHolidays(holidaysJSON);
+    setLoading(false);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getWeather();
+    getAllData();
   };
 
   return (
@@ -57,6 +60,7 @@ const GetHolidaysAndWeather = () => {
           ))}
         </div>
       )}
+      {loading && <h2>Loading Weather Data...</h2>}
     </div>
   );
 };
