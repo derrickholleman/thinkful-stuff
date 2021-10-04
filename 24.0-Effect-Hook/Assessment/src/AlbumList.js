@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function AlbumList({ user, albums, setAlbums }) {
+function AlbumList({ user, albums, setAlbums, loading, setLoading }) {
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -13,16 +13,18 @@ function AlbumList({ user, albums, setAlbums }) {
         );
         const albumsJSON = await albumsResponse.json();
         setAlbums(albumsJSON);
+        setLoading(false)
       } catch (err) {
         if (err.name === "AbortError") {
-          console.log("Aborted", user.id);
+          console.log("Aborted");
         } else {
           throw err;
         }
       }
     }
-
-    getAlbums();
+    if (user.name) {
+      getAlbums();
+    } 
 
     return () => {
       abortController.abort();
@@ -32,6 +34,7 @@ function AlbumList({ user, albums, setAlbums }) {
   return (
     <div>
       {!user.name && <p>Please click on a user name to the left</p>}
+      {loading && <h3 style={{"color":"red"}}>Loading {user.name} albums...</h3>}
       <h2>{user.name}</h2>
       {albums.map((album) => (
         <p key={album.id}>
