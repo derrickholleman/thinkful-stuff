@@ -1,7 +1,9 @@
 create a new AbortController()
 
-try/catch 
+create async function with try/catch 
 
 pass {signal: abortController.signal} into the second param of fetch()
+
+call the async function before cleanup
 
 clean up with return () => {abortController.abort()}
