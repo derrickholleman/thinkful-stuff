@@ -1,0 +1,7 @@
+// create subscriber
+const createSubscriber = (newSubscriber) => setSubscribers((subscribers) => [newSubscriber, ...subscribers])
+
+
+
+// delete subscriber
+const deleteSubscriber = (indexToDelete) => setSubscribers(subscribers) => subscribers.filter((subscriber, index) => index !== indexToDelete))
