@@ -1,9 +1,8 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Users = ({ users = [] }) => {
-
-  const rows = users.map(user => (
+  const rows = users.map((user) => (
     <tr key={user.id}>
       <td>{user.id}</td>
       <td>{user.username}</td>
@@ -13,27 +12,25 @@ export const Users = ({ users = [] }) => {
         <Link to={`/user/${user.id}`}>View User</Link>
       </td>
     </tr>
-  ))
+  ));
 
   return (
     <section>
       <h2>Users</h2>
       <table>
         <thead>
-        <tr>
-          <th>#</th>
-          <th>User Name</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>View</th>
-        </tr>
+          <tr>
+            <th>#</th>
+            <th>User Name</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>View</th>
+          </tr>
         </thead>
-        <tbody>
-        {rows}
-        </tbody>
+        <tbody>{rows}</tbody>
       </table>
     </section>
   );
-}
+};
 
 export default Users;
