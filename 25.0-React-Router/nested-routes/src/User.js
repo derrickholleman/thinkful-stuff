@@ -1,18 +1,24 @@
 import React from "react";
-import {Link, NavLink, Route, Switch, useParams, useRouteMatch} from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Route,
+  Switch,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 import UserPosts from "./UserPosts";
 import UserProfile from "./UserProfile";
 
 export const User = ({ users = [] }) => {
-
-  const { userId } = useParams()
-  const { url } = useRouteMatch();
+  const { userId } = useParams();
+  const { url } = useRouteMatch(); // /user/2
 
   if (!userId) {
-    throw new Error("No URL parameter for userId")
+    throw new Error("No URL parameter for userId");
   }
 
-  const user = users.find(user => `${user.id}` === userId)
+  const user = users.find((user) => `${user.id}` === userId);
 
   if (user) {
     return (
@@ -20,29 +26,34 @@ export const User = ({ users = [] }) => {
         <Link to="/"> &lt;- Users</Link>
         <div>
           <h2>{user.name}</h2>
+          {/* each user has a link to their profile and posts with a specified url path */}
           <ul>
             <li>
-              <NavLink to={`${url}`} data-testid="user-profile">Profile</NavLink>
+              <NavLink to={`${url}`}>
+                Profile
+              </NavLink>
             </li>
             <li>
-              <NavLink to={`${url}/posts`} data-testid="user-posts">Posts</NavLink>
+              <NavLink to={`${url}/posts`}>
+                Posts
+              </NavLink>
             </li>
           </ul>
 
           <Switch>
+            {/* here the components within each user are rendered and their path is specified */}
             <Route path={`${url}/posts`}>
-              <UserPosts posts={user.posts}/>
+              <UserPosts posts={user.posts} />
             </Route>
             <Route path={url}>
-              <UserProfile user={user}/>
+              <UserProfile user={user} />
             </Route>
           </Switch>
         </div>
       </section>
-
     );
   }
-  return <p>User not found</p>
-}
+  return <p>User not found</p>;
+};
 
 export default User;
