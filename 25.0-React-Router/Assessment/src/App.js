@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route } from "react-router-dom";
 import Header from "./common/Header";
 import CardList from "./home/CardList";
 import User from "./user/User";
-import NotFound from './common/NotFound'
+import NotFound from "./common/NotFound";
 
 function App() {
   /*
@@ -20,19 +20,18 @@ function App() {
     <Fragment>
       <Header />
       <Switch>
-        <Route exact path='/'>
+        <Route exact path="/">
           <CardList />
         </Route>
 
-        <Route exact path='users/:userId'>
+        <Route path="/users/:userId">
           <User />
         </Route>
-        <Route path='*'>
+
+        <Route>
           <NotFound />
         </Route>
-        
       </Switch>
-      
     </Fragment>
   );
 }
