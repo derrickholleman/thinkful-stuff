@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router";
+import { useParams } from "react-router";
 
 const UserProfile = () => {
   const [user, setUser] = useState({});
-  
+
   // sets userId as the userId from the URL (which is in the useParams object)
-  const userId = useParams().userId;
+  console.log(useParams());
+  const { userId } = useParams();
 
   useEffect(() => {
     async function loadUser() {
