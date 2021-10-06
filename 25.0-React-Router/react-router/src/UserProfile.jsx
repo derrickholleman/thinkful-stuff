@@ -3,21 +3,24 @@ import { useParams, Link } from "react-router";
 
 const UserProfile = () => {
   const [user, setUser] = useState({});
-
-  const userId = useParams().userId;
+  
   // sets userId as the userId from the URL (which is in the useParams object)
+  const userId = useParams().userId;
+
   useEffect(() => {
     async function loadUser() {
+      // fetch user by params id
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/users/${userId}`
       );
       const userFromAPI = await response.json();
+      // set user as response object
       setUser(userFromAPI);
     }
     loadUser();
   }, [userId]);
 
-  // No need to change anything below here
+  // if there was a valid user fetched
   if (user.id) {
     return Object.entries(user).map(([key, value]) => (
       <div key={key}>
@@ -26,7 +29,7 @@ const UserProfile = () => {
       </div>
     ));
   }
-  return "Loading...";
+  return "User not found!";
 };
 
 export default UserProfile;
