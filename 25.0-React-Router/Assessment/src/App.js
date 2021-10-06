@@ -24,13 +24,13 @@ function App() {
           <CardList />
         </Route>
 
-        <Route path='users/:userId'>
+        <Route exact path='users/:userId'>
           <User />
         </Route>
         <Route path='*'>
           <NotFound />
         </Route>
-         
+        
       </Switch>
       
     </Fragment>

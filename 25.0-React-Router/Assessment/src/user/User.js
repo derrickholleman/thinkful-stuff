@@ -29,7 +29,7 @@ export const User = () => {
     return (
       <ErrorMessage error={error}>
         <p>
-          <Link to ='/'>Return Home</Link>
+          <Link to='/'>Return Home</Link>
         </p>
       </ErrorMessage>
     );
