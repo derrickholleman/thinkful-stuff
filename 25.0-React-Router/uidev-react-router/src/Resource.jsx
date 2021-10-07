@@ -7,6 +7,10 @@ const Resource = ({ topics }) => {
   const resource = topics
     .find((topic) => topic.id === topicId)
     .resources.find((resource) => resource.id === resourceId);
+  // const topic = topics.find((topic) => topic.id === topicId);
+  // const resource = topic.resources.find(
+  //   (resource) => resource.id === resourceId
+  // );
   return (
     <div>
       <h3>{resource.name}</h3>
