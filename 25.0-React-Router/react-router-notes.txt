@@ -7,3 +7,5 @@ Components are wrapped in <Switch> & <Route> tags and you specify which URL the 
 useRouteMatch() gets the url the component is rendered at and can be stored in a variable like const {url} = useRouteMatch()
 
 useParams() gets the params from the URL and can be stored in a variable.  For example a route with the URL /users/2, could be stored in const {userId} = useParams(), with userId equalling 2.
+
+doing both {path, url} = useParams() is efficient because you can use the ${path} when working with <Route> because path will equal users/:userId and you can use ${url} when working with <Link> because the url will equal the actual URL
