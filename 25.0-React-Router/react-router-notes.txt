@@ -4,6 +4,6 @@ Links to routes are made with <Link> tags and are created dynamically by mapping
 
 Components are wrapped in <Switch> & <Route> tags and you specify which URL the Component will be rendered at.  Ex. <Route exact path='/users/:userId'>  
 
-useRouteMatch() gets the ID the component is rendered at and can be stored in a variable like const {url} = useRouteMatch()
+useRouteMatch() gets the url the component is rendered at and can be stored in a variable like const {url} = useRouteMatch()
 
 useParams() gets the params from the URL and can be stored in a variable.  For example a route with the URL /users/2, could be stored in const {userId} = useParams(), with userId equalling 2.
