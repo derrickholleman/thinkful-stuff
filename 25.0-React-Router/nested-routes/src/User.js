@@ -29,24 +29,20 @@ export const User = ({ users = [] }) => {
           {/* each user has a link to their profile and posts with a specified url path */}
           <ul>
             <li>
-              <NavLink to={`${url}`}>
-                Profile
-              </NavLink>
+              <NavLink to={`${url}`}>Profile</NavLink>
             </li>
             <li>
-              <NavLink to={`${url}/posts`}>
-                Posts
-              </NavLink>
+              <NavLink to={`${url}/posts`}>Posts</NavLink>
             </li>
           </ul>
 
           <Switch>
             {/* here the components within each user are rendered and their path is specified */}
+            <Route exact path={url}>
+              <UserProfile user={user} />
+            </Route>
             <Route path={`${url}/posts`}>
               <UserPosts posts={user.posts} />
-            </Route>
-            <Route path={url}>
-              <UserProfile user={user} />
             </Route>
           </Switch>
         </div>
