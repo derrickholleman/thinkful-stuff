@@ -12,7 +12,7 @@ import UserProfile from "./UserProfile";
 
 export const User = ({ users = [] }) => {
   const { userId } = useParams();
-  const { url } = useRouteMatch(); // /user/2
+  const { url, path } = useRouteMatch();
 
   if (!userId) {
     throw new Error("No URL parameter for userId");
@@ -26,25 +26,27 @@ export const User = ({ users = [] }) => {
         <Link to="/"> &lt;- Users</Link>
         <div>
           <h2>{user.name}</h2>
-          {/* each user has a link to their profile and posts with a specified url path */}
+          {/* NAV LINKS */}
           <ul>
             <li>
-              <NavLink to={`${url}`}>Profile</NavLink>
+              <NavLink to={url} data-testid="user-profile">
+                Profile
+              </NavLink>
             </li>
             <li>
-              <NavLink to={`${url}/posts`}>Posts</NavLink>
+              <NavLink to={`${url}/posts`} data-testid="user-posts">
+                Posts
+              </NavLink>
             </li>
           </ul>
 
-          <Switch>
-            {/* here the components within each user are rendered and their path is specified */}
-            <Route exact path={url}>
-              <UserProfile user={user} />
-            </Route>
-            <Route path={`${url}/posts`}>
-              <UserPosts posts={user.posts} />
-            </Route>
-          </Switch>
+          {/* ROUTES FOR PROFILE AND POSTS */}
+          <Route exact path={path}>
+            <UserProfile user={user} />
+          </Route>
+          <Route path={`${path}/posts`}>
+            <UserPosts posts={user.posts} />
+          </Route>
         </div>
       </section>
     );

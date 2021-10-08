@@ -3,12 +3,14 @@ import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 import UserPost from "./UserPost";
 
 export const UserPosts = ({ posts = [] }) => {
-  const { url } = useRouteMatch(); // /user/2/posts
+  const { path, url } = useRouteMatch();
 
   const postLinks = posts.map((post) => (
     <li key={post.id}>
       {/* dynamically render links to the different posts */}
-      <Link to={`${url}/${post.id}`}>{post.title}</Link>
+      <Link to={`${url}/${post.id}`} data-testid={`user-post-${post.id}`}>
+        {post.title}
+      </Link>
     </li>
   ));
 
@@ -16,16 +18,14 @@ export const UserPosts = ({ posts = [] }) => {
     <div>
       <ul>{postLinks}</ul>
       <div>
-        <Switch>
-          {/* if no post id, render this message */}
-          <Route exact path={url}>
-            <p>No post selected...</p>
-          </Route>
-          {/* specify URL where each user post should be found at */}
-          <Route path={`${url}/:postId`}>
-            <UserPost posts={posts} />
-          </Route>
-        </Switch>
+        {/* if no post id, render this message */}
+        <Route exact path={path}>
+          <p>No post selected...</p>
+        </Route>
+        {/* specify path where each user post should be found at */}
+        <Route path={`${path}/:postId`}>
+          <UserPost posts={posts} />
+        </Route>
       </div>
     </div>
   );

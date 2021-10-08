@@ -8,11 +8,12 @@ function App() {
   return (
     <div className="App">
       <Route exact={true} path="/">
-        {/* home page with all users */}
+        {/* home page */}
         <Users users={users} />
       </Route>
-      {/* specify the path for each individual user, this is also the same as the profile path */}
-      <Route path="/user/:userId">
+
+      {/* /users/1 */}
+      <Route path="/users/:userId">
         <User users={users} />
       </Route>
     </div>
