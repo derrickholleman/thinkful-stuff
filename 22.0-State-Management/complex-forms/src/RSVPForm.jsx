@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./App.css";
 
 const RSVPForm = () => {
-  const formState = {
+  const initFormState = {
     name: "",
     age: "",
     member_status: false,
     comment: "",
   };
 
-  const [formData, setFormData] = useState({ ...formState });
+  const [formData, setFormData] = useState({ ...initFormState });
   const handleChange = ({ target }) => {
     let value;
     target.type === "checkbox"
@@ -30,7 +30,7 @@ const RSVPForm = () => {
       formData.member_status,
       formData.comment
     );
-    setFormData({ ...formState });
+    setFormData({ ...initFormState });
   };
 
   return (
@@ -58,7 +58,7 @@ const RSVPForm = () => {
           id="member_status"
           type="checkbox"
           onChange={handleChange}
-          value={formData.member_status}
+          checked={formData.member_status}
         />
       </label>
 
