@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import { Link, Route, useRouteMatch } from "react-router-dom";
 import UserPost from "./UserPost";
 
 export const UserPosts = ({ posts = [] }) => {

@@ -3,7 +3,6 @@ import {
   Link,
   NavLink,
   Route,
-  Switch,
   useParams,
   useRouteMatch,
 } from "react-router-dom";
