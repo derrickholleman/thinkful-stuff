@@ -5,7 +5,6 @@ import { Route, useRouteMatch, Link } from "react-router-dom";
 const Topics = ({ topics }) => {
   const { url, path } = useRouteMatch();
 
-  // const topic = topics.find((topic) => topic.id === topicId)
   return (
     <div>
       <h1>TOPICS</h1>
