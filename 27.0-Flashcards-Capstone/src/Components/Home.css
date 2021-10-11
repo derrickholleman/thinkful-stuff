@@ -1,0 +1,22 @@
+.decks-list {
+    margin-top: 1rem;
+}
+.deck-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.deck {
+    border: 1px solid rgba(128, 128, 128, 0.61);
+    border-radius: 5px;
+    margin: 1rem;
+    padding: 1rem;
+}
+.deck-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.view-study > a:nth-child(2) {
+    margin: 0 .5rem;
+}
