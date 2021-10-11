@@ -40,7 +40,7 @@ const StudyDeck = () => {
     return <p>Loading...</p>;
   }
 
-  if (deck.cards.length >= 2) {
+  if (deck.cards.length > 2) {
     return (
       <div>
         <nav aria-label="breadcrumb">
