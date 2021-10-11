@@ -4,7 +4,8 @@ import { readDeck } from "../../utils/api/index";
 import "./StudyDeck.css";
 
 const StudyDeck = () => {
-  const [deck, setDeck] = useState({cards: []});
+  // sets state with cards where deckId matches deck.id
+  const [deck, setDeck] = useState({ cards: [] });
   const [currentCardNumber, setCurrentCardNumber] = useState(1);
   const [cardSide, setCardSide] = useState("front");
   const { deckId } = useParams();
@@ -14,6 +15,8 @@ const StudyDeck = () => {
     readDeck(deckId).then(setDeck);
     // eslint-disable-next-line
   }, [deckId]);
+
+  console.log(deck);
 
   const handleNext = () => {
     setCurrentCardNumber((currentCardNumber) => currentCardNumber + 1);
@@ -81,7 +84,7 @@ const StudyDeck = () => {
       </div>
     );
   }
-  
+
   /* if not enough cards, render this */
   return (
     <div>
