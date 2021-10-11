@@ -31,7 +31,7 @@ const ViewDeck = () => {
 
     if (confirmDelete) {
       deleteCard(cardId)
-      history.go(0)
+      readDeck(deckId).then(setDeck)
     }
   };
 
