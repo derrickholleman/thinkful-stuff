@@ -15,17 +15,10 @@ const EditCard = () => {
   }, [deckId, cardId]);
 
   const handleSubmit = (card) => {
-    updateCard(card.id)
+    updateCard(card.id);
   };
 
-  const child = card.id ? (
-    <CardForm deck={deck} 
-    card={card} 
-    setCard={setCard}
-    handleSubmit={handleSubmit}/>
-  ) : (
-    <p>Loading...</p>
-  )
+  console.log(card)
 
   return (
     <div>
@@ -46,8 +39,15 @@ const EditCard = () => {
       </nav>
 
       <h2>Edit Card</h2>
-      {child}
-      
+
+      {card.id && (
+        <CardForm
+          deck={deck}
+          card={card}
+          setCard={setCard}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 };

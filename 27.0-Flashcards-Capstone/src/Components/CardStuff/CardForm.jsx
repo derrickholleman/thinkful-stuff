@@ -8,6 +8,8 @@ const CardForm = ({ handleSubmit, deck, card, setCard }) => {
   };
   const [newCard, setNewCard] = useState({ ...initNewCard });
 
+  console.log(card)
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (!card.id) {
