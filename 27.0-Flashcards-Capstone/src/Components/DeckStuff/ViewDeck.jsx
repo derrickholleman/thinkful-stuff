@@ -40,7 +40,7 @@ const ViewDeck = () => {
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <Link to="/">Home</Link>
+            <Link to="/"><i class="bi bi-house-door-fill"></i> Home</Link>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
             {deck.name}

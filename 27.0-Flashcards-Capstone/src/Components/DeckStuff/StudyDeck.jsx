@@ -86,6 +86,21 @@ const StudyDeck = () => {
   /* if not enough cards, render this */
   return (
     <div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <Link to="/">
+              <i class="bi bi-house-door-fill"></i> Home
+            </Link>
+          </li>
+          <li class="breadcrumb-item">
+            <Link to={`/decks/${deckId}`}>Rendering In React</Link>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Study
+          </li>
+        </ol>
+      </nav>
       <h1>{deck.name}: Study</h1>
       <h3>Not enough cards</h3>
       <p>

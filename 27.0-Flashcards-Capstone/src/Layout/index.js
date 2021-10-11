@@ -44,16 +44,15 @@ function Layout() {
             <EditDeck />
           </Route>
 
-          <Route path="/decks/:deckId/cards/new">
+          <Route exact path="/decks/:deckId/cards/new">
             {/* route to add a new card to a specific deck */}
             <AddCard />
           </Route>
 
-          <Route path="/decks/:deckId/cards/:cardId/edit">
+          <Route exact path="/decks/:deckId/cards/:cardId/edit">
             {/* route to edit a specific card in a deck */}
             <EditCard />
           </Route>
-
           <NotFound />
         </Switch>
       </div>
