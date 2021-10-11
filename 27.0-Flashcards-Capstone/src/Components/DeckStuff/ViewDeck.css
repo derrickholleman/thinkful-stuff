@@ -39,3 +39,8 @@
     margin-top: 0.5rem;
   }
 }
+@media all and (max-width: 520px) {
+  .card-edit-delete {
+    flex: 1
+  }
+}
