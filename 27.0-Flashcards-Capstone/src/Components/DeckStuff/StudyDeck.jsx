@@ -16,8 +16,6 @@ const StudyDeck = () => {
     // eslint-disable-next-line
   }, [deckId]);
 
-  console.log(deck);
-
   const handleNext = () => {
     setCurrentCardNumber((currentCardNumber) => currentCardNumber + 1);
     setCardSide("front");

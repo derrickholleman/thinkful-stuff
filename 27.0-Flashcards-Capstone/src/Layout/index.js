@@ -5,7 +5,9 @@ import Home from "../Components/Home";
 import CreateDeck from "../Components/DeckStuff/CreateDeck";
 import StudyDeck from "../Components/DeckStuff/StudyDeck";
 import ViewDeck from "../Components/DeckStuff/ViewDeck";
+import EditDeck from '../Components/DeckStuff/EditDeck'
 import AddCard from "../Components/CardStuff/AddCard";
+import EditCard from "../Components/CardStuff/EditCard";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 function Layout() {
@@ -37,9 +39,18 @@ function Layout() {
             <StudyDeck />
           </Route>
 
+          <Route path="/decks/:deckId/edit">
+            {/* route to deck study home page */}
+            <EditDeck />
+          </Route>
+
           <Route path="/decks/:deckId/cards/new">
             {/* route to add a new card to a specific deck */}
             <AddCard />
+          </Route>
+
+          <Route path='/decks/:deckId/cards/:cardId/edit'>
+            <EditCard />
           </Route>
 
           <NotFound />

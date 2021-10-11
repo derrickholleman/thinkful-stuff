@@ -1,0 +1,6 @@
+.create-deck-btns {
+    margin-top: .75rem;
+}
+.create-deck-btns > button {
+    margin-left: .5rem;
+}
