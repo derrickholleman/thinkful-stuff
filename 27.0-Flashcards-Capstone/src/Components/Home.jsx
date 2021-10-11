@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { listDecks, deleteDeck } from "../utils/api";
 import "./Home.css";
 
@@ -44,7 +44,7 @@ const Home = () => {
 
             <div className="deck-btns-home">
               <div className="view-study">
-                <Link to={`decks/${deck.id}`}>
+                <Link to={`/decks/${deck.id}`}>
                   <button className="btn btn-secondary">
                     <i class="bi bi-eye"></i> View
                   </button>
