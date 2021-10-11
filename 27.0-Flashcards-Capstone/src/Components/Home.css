@@ -1,18 +1,18 @@
-.decks-list {
+.decks-list-home {
     margin-top: 1rem;
 }
-.deck-title {
+.deck-title-home {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.deck {
+.deck-home {
     border: 1px solid rgba(128, 128, 128, 0.61);
     border-radius: 5px;
     margin: 1rem;
     padding: 1rem;
 }
-.deck-btns {
+.deck-btns-home {
     display: flex;
     align-items: center;
     justify-content: space-between;

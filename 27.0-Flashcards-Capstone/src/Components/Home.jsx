@@ -11,8 +11,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-      loadDecks()
-  }, [])
+    loadDecks();
+  }, []);
 
   const handleDelete = (deckId) => {
     const confirmDelete = window.confirm(
@@ -33,16 +33,16 @@ const Home = () => {
         </button>
       </Link>
 
-      <div className="decks-list">
+      <div className="decks-list-home">
         {decks.map((deck) => (
-          <div className="deck" key={deck.id}>
-            <div className="deck-title">
+          <div className="deck-home" key={deck.id}>
+            <div className="deck-title-home">
               <h5>{deck.name}</h5>
               <p>{deck.cards.length} cards</p>
             </div>
             <p>{deck.description}</p>
 
-            <div className="deck-btns">
+            <div className="deck-btns-home">
               <div className="view-study">
                 <Link to={`decks/${deck.id}`}>
                   <button className="btn btn-secondary">
