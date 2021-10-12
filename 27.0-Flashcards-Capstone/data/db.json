@@ -43,11 +43,22 @@
       "id": 5
     },
     {
-      "cards": [],
+      "front": "test",
+      "back": "test",
+      "id": 7,
+      "deckId": 1
+    },
+    {
       "front": "b",
-      "back": "b",
+      "back": "bbb",
+      "id": 8,
+      "deckId": 1
+    },
+    {
+      "front": "testt",
+      "back": "testttt",
       "deckId": 1,
-      "id": 7
+      "id": 9
     }
   ]
 }

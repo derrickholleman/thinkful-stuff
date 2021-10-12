@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-const CardForm = ({ handleSubmit, card, setCard }) => {
+const CardForm = ({ handleSubmit, card = {} }) => {
+  // need card empty object because AddCard isn't passing in a card
   const initNewCard = {
     front: "",
     back: "",
   };
   const [newCard, setNewCard] = useState({ ...initNewCard });
+  const [oldCard, setOldCard] = useState({ ...card });
   const { deckId } = useParams()
 
-  console.log(card)
-
   const onSubmit = (e) => {
+    console.log(card)
     e.preventDefault();
     if (!card.id) {
       handleSubmit(newCard);
-      console.log('submitted new card')
     } else {
-      handleSubmit(card);
-      console.log('submitted updated card')
+      handleSubmit(oldCard);
     }
 
     setNewCard({ ...initNewCard });
@@ -28,13 +27,9 @@ const CardForm = ({ handleSubmit, card, setCard }) => {
     if (!card.id) {
       setNewCard({ ...newCard, [e.target.id]: e.target.value });
     } else {
-      setCard({ ...card, [e.target.id]: e.target.value });
+      setOldCard({ ...oldCard, [e.target.id]: e.target.value });
     }
   };
-
-  if (!card) {
-    return null
-  }
 
   return (
     <div>
@@ -86,7 +81,7 @@ const CardForm = ({ handleSubmit, card, setCard }) => {
               class="form-control"
               id="front"
               placeholder="Front Side of Card"
-              value={card.front}
+              value={oldCard.front}
               onChange={handleChange}
               required
             />
@@ -98,7 +93,7 @@ const CardForm = ({ handleSubmit, card, setCard }) => {
               class="form-control"
               id="back"
               placeholder="Back Side of Card"
-              value={card.back}
+              value={oldCard.back}
               onChange={handleChange}
               required
             />
@@ -107,7 +102,6 @@ const CardForm = ({ handleSubmit, card, setCard }) => {
             <Link to={`/decks/${deckId}`}>
               <button className="btn btn-secondary">Done</button>
             </Link>
-            <Link to={`/decks/${deckId}`}>
               <button
                 type="submit"
                 className="btn btn-primary"
@@ -115,7 +109,6 @@ const CardForm = ({ handleSubmit, card, setCard }) => {
               >
                 Submit
               </button>
-            </Link>
           </div>
         </form>
       )}

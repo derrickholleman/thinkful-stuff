@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import CardForm from "./CardForm";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { readCard, readDeck, updateCard } from "../../utils/api";
 
 const EditCard = () => {
   const [deck, setDeck] = useState({ cards: [] });
-  const [card, setCard] = useState([]);
+  const [card, setCard] = useState({});
   const { deckId, cardId } = useParams();
+  const history = useHistory()
 
   useEffect(() => {
     readDeck(deckId).then(setDeck);
@@ -14,11 +15,12 @@ const EditCard = () => {
     // eslint-disable-next-line
   }, [deckId, cardId]);
 
-  const handleSubmit = (card) => {
-    updateCard(card.id);
+  const handleSubmit = async (card) => {
+    // needs to await for a successful update
+    await updateCard(card);
+    // then push to deck after update
+    history.push(`/decks/${deckId}`)
   };
-
-  console.log(card)
 
   return (
     <div>
