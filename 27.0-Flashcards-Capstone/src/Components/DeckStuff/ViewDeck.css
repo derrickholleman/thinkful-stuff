@@ -33,6 +33,7 @@
 }
 .edit-delete {
   display: flex;
+  margin-top: .5rem;
 }
 .edit-delete a:nth-child(1) {
   margin-right: .5rem;

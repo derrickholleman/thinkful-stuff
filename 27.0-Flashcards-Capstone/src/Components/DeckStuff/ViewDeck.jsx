@@ -30,17 +30,69 @@ const ViewDeck = () => {
     );
 
     if (confirmDelete) {
-      deleteCard(cardId)
-      readDeck(deckId).then(setDeck)
+      deleteCard(cardId);
+      readDeck(deckId).then(setDeck);
     }
   };
+
+  if (deck.cards.length === 0) {
+    return (
+      <div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <Link to="/">
+              <i class="bi bi-house-door-fill"></i> Home
+            </Link>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {deck.name}
+          </li>
+        </ol>
+      </nav>
+        <h3>{deck.name}</h3>
+        <p>{deck.description}</p>
+        <h3 style={{marginBottom:"2rem"}}>Add some cards!</h3>
+
+        <div className="view-deck-btns">
+        <div>
+          <Link to={`/decks/${deck.id}/edit`}>
+            <button className="btn btn-secondary">
+              <i class="bi bi-pencil-fill"></i> Edit
+            </button>
+          </Link>
+          <Link to={`/decks/${deck.id}/study`}>
+            <button className="btn btn-primary">
+              <i class="bi bi-journal-bookmark"></i> Study
+            </button>
+          </Link>
+          <Link to={`/decks/${deck.id}/cards/new`}>
+            <button className="btn btn-primary add-cards">
+              <i class="bi bi-plus-lg"></i> Add Cards
+            </button>
+          </Link>
+        </div>
+        <div>
+          <button
+            className="btn btn-danger"
+            onClick={() => handleDelete(deck.id)}
+          >
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <Link to="/"><i class="bi bi-house-door-fill"></i> Home</Link>
+            <Link to="/">
+              <i class="bi bi-house-door-fill"></i> Home
+            </Link>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
             {deck.name}
