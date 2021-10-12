@@ -42,7 +42,6 @@ const EditCard = () => {
 
       {card.id && (
         <CardForm
-          deck={deck}
           card={card}
           setCard={setCard}
           handleSubmit={handleSubmit}

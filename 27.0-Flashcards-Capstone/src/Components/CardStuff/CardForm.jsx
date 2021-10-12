@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const CardForm = ({ handleSubmit, deck, card, setCard }) => {
+const CardForm = ({ handleSubmit, card, setCard }) => {
   const initNewCard = {
     front: "",
     back: "",
   };
   const [newCard, setNewCard] = useState({ ...initNewCard });
+  const { deckId } = useParams()
 
   console.log(card)
 
@@ -65,7 +66,7 @@ const CardForm = ({ handleSubmit, deck, card, setCard }) => {
             />
           </div>
           <div className="create-deck-btns">
-            <Link to={`/decks/${deck.id}`}>
+            <Link to={`/decks/${deckId}`}>
               <button className="btn btn-secondary">Done</button>
             </Link>
             <button type="submit" className="btn btn-primary">
@@ -103,10 +104,10 @@ const CardForm = ({ handleSubmit, deck, card, setCard }) => {
             />
           </div>
           <div className="create-deck-btns">
-            <Link to={`/decks/${deck.id}`}>
+            <Link to={`/decks/${deckId}`}>
               <button className="btn btn-secondary">Done</button>
             </Link>
-            <Link to={`/decks/${deck.id}`}>
+            <Link to={`/decks/${deckId}`}>
               <button
                 type="submit"
                 className="btn btn-primary"
