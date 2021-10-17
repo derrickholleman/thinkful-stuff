@@ -10,7 +10,7 @@ const PokemonFetch = () => {
   useEffect(() => {
     setLoading(true);
     setError(false)
-    async function getPokemon(ids) {
+    function getPokemon(ids) {
       Promise.all(
         ids.map(async (id) => {
           const pokemonRes = fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);

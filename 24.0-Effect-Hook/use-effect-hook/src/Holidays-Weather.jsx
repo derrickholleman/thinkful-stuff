@@ -51,7 +51,7 @@ const GetHolidaysAndWeather = () => {
         <div>
           {weather.map((data) => (
             <p key={data.id}>
-              It is {data.main.temp} degrees in {data.name}. Here are the
+              It is {data.main.temp.toFixed(0)} degrees in {data.name}. Here are the
               holidays in {data.name}
             </p>
           ))}
