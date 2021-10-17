@@ -42,6 +42,7 @@ const GetHolidaysAndWeather = () => {
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          required
         />
         <button type="submit">Submit</button>
       </form>
