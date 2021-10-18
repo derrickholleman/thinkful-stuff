@@ -23,7 +23,6 @@ module.exports = app;
 
 // const pongRes = (req, res, next) => {
 //   res.send('pong!')
-//   next()
 // }
 
 // const welcomeMessage = (req, res, next) => {
