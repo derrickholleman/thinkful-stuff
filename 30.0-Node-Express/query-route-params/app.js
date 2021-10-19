@@ -2,6 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 
+app.use(morgan("dev"));
+
 const sayHello = (req, res) => {
   const { firstName, lastName } = req.query
   const content = firstName ? `Hello, ${firstName} ${lastName}!` : "Hello!"
@@ -32,7 +34,6 @@ app.get("/", homePage);
 app.get("/say/goodbye", sayGoodbye) // put specific match first
 app.get("/say/:greeting", saySomething) // this will take in anything in place of :greeting
 
-app.use(morgan("dev"));
 module.exports = app;
 
 // qualified challenge 
