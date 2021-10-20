@@ -18,6 +18,7 @@ app.use("/counts/:countName", (req, res, next) => {
 });
 
 app.use("/counts", (req, res, next) => {
+  // sending counts with the alias "data"
   res.json({ data: counts });
 });
 
@@ -34,6 +35,7 @@ app.use("/flips/:flipId", (req, res, next) => {
 });
 
 app.use("/flips", (req, res) => {
+  // sending flips with the alias "data"
   res.json({ data: flips });
 });
 
