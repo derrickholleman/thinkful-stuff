@@ -24,7 +24,6 @@ app.get("/animals/:animal", (req, res, next) => {
   let numMatch = /[0-9]/;
   for (let letter in animal) {
     if (numMatch.test(animal[letter])) {
-      console.log("number found");
       validName = false;
     } else {
       validName = true;
