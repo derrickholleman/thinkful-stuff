@@ -1,17 +1,21 @@
 const router = require("express").Router();
 const controller = require("./flips.controller");
+const methodNotAllowed = require("../errors/methodNotAllowed");
 
-// makes a get request according to the function specified in controller
 router.route("/").get(controller.list);
 
-// able to get a single flip and also update it
+// added method not allowed to handle all unspecified requests
 router
   .route("/:flipId")
   .get(controller.read)
   .put(controller.update)
-  .delete(controller.delete);
+  .delete(controller.delete)
+  .all(methodNotAllowed);
 
-// post request to /flips. combines get and post
-router.route("/").get(controller.list).post(controller.create);
+router
+  .route("/")
+  .get(controller.list)
+  .post(controller.create)
+  .all(methodNotAllowed);
 
 module.exports = router;

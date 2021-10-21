@@ -1,24 +1,33 @@
 const counts = require("../data/counts-data");
 
-// gets passed to router as controller.list
 function list(req, res) {
   res.json({ data: counts });
 }
-function read(req, res, next) {
+
+function read(req, res) {
+  res.json({
+    data: res.locals.count,
+  });
+}
+
+// VALIDATION 
+function countExists(req, res, next) {
   const { countName } = req.params;
+  console.log(countName)
   const foundCount = counts[countName];
-  if (foundCount !== undefined) {
-    res.json({ data: foundCount });
-  } else {
-    // set error object for passing to error handler
-    next({
+
+  if (foundCount === undefined) {
+    return next({
       status: 404,
       message: `Count name not found: ${countName}`,
     });
   }
-};
+  // store count response in res.locals
+  res.locals.count = foundCount;
+  next();
+}
 
 module.exports = {
   list,
-  read
+  read: [countExists, read],
 };

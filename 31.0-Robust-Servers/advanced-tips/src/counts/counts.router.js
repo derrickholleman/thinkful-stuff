@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const controller = require("./counts.controller");
+const methodNotAllowed = require("../errors/methodNotAllowed");
 
-// makes a get request according to the function specified in controller 
-router.route("/").get(controller.list);
-router.route("/:countName").get(controller.read);
+// added a methodNotAllowed file to handle all methods that aren't defined in this route file (post, put, delete)
+router.route("/:countName").get(controller.read).all(methodNotAllowed)
+router.route("/").get(controller.list).all(methodNotAllowed)
 
 module.exports = router;

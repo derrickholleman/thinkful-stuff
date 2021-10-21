@@ -28,21 +28,21 @@ function create(req, res) {
 }
 // PUT REQUEST
 function update(req, res) {
-  const { flipId } = req.params;
-  const foundFlip = flips.find((flip) => flip.id === Number(flipId));
+  // getting the response object from res.locals in flipExists()
+  const flip = res.locals.flip
 
   const originalResult = foundFlip.result;
   const { data: { result } = {} } = req.body;
 
   if (originalResult !== result) {
     // update the flip
-    foundFlip.result = result;
+    flip.result = result;
     // Adjust the counts
     counts[originalResult] = counts[originalResult] - 1;
     counts[result] = counts[result] + 1;
   }
 
-  res.json({ data: foundFlip });
+  res.json({ data: flip });
 }
 
 // DELETE REQUEST
@@ -56,7 +56,7 @@ function destroy(req, res) {
       (counts[deletedFlip.result] = counts[deletedFlip.result] - 1)
   );
 
-  res.sendStatus(204); // action successful but response doesn't include a body
+  res.sendStatus(204);
 }
 
 // VALIDATION
@@ -64,6 +64,8 @@ function flipExists(req, res, next) {
   const { flipId } = req.params;
   const foundFlip = flips.find((flip) => flip.id === Number(flipId));
   if (foundFlip) {
+    // storing foundFlip in res.locals
+    res.locals.flip = foundFlip
     return next();
   }
   next({
