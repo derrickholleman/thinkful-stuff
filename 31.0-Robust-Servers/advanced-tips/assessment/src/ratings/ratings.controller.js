@@ -3,11 +3,13 @@ const ratings = require("../data/ratings-data");
 function list(req, res) {
   const { noteId } = req.params;
   // filter ratings response where the rating.noteId equals the noteId param
-  const filteredRatings = ratings.filter((rating) => rating.noteId === noteId);
+  const filteredRatings = ratings.filter(
+    (rating) => rating.noteId === Number(noteId)
+  );
   if (noteId) {
     res.json({ data: filteredRatings });
   } else {
-    res.json({ data: ratings })
+    res.json({ data: ratings });
   }
 }
 
