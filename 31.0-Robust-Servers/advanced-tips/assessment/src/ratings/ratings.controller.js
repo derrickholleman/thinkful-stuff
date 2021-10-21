@@ -12,7 +12,7 @@ function list(req, res) {
 }
 
 function read(req, res) {
-  res.status(200).json({ data: res.locals.rating });
+  res.json({ data: res.locals.rating });
 }
 
 // VALIDATION

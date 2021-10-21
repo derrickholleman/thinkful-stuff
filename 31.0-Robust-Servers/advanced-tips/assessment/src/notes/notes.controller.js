@@ -20,31 +20,8 @@ function destroy(req, res) {
   res.sendStatus(204);
 }
 
-function hasText(req, res, next) {
-  const { data: { text } = {} } = req.body;
-
-  if (text) {
-    return next();
-  }
-  next({ status: 400, message: "A 'text' property is required." });
-}
-
 function list(req, res) {
   res.json({ data: notes });
-}
-
-function noteExists(req, res, next) {
-  const noteId = Number(req.params.noteId);
-  const foundNote = notes.find((note) => note.id === noteId);
-  if (foundNote) {
-    res.locals.note = foundNote
-    return next();
-  }
-  next({
-    status: 404,
-    message: `Note id not found: ${req.params.noteId}`,
-  });
-
 }
 
 function read(req, res) {
@@ -59,12 +36,35 @@ function update(req, res) {
   res.json({ data: res.locals.note });
 }
 
+// VALIDATION
+function noteExists(req, res, next) {
+  const noteId = Number(req.params.noteId);
+  const foundNote = notes.find((note) => note.id === noteId);
+  if (foundNote) {
+    res.locals.note = foundNote;
+    return next();
+  }
+  next({
+    status: 404,
+    message: `Note id not found: ${req.params.noteId}`,
+  });
+}
+
+function hasText(req, res, next) {
+  const { data: { text } = {} } = req.body;
+
+  if (text) {
+    return next();
+  }
+  next({ status: 400, message: "A 'text' property is required." });
+}
+
 module.exports = {
   create: [hasText, create],
   list,
   read: [noteExists, read],
   update: [noteExists, hasText, update],
   delete: destroy,
-  // export note exists to notes.router 
-  noteExists
+  // export note exists to notes.router
+  noteExists,
 };
