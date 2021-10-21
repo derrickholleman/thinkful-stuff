@@ -11,16 +11,18 @@ const counts = require("./data/counts-data");
 app.get("/counts/:countName", (req, res, next) => {
   const { countName } = req.params;
   const foundCount = counts[countName];
-  // need undefined because count could be zero which is valid but a falsy value
   if (foundCount !== undefined) {
     res.json({ data: foundCount });
   } else {
-    next(`Count name not found: ${countName}`);
+    // set error object for passing to error handler
+    next({
+      status: 404,
+      message: `Count name not found: ${countName}`,
+    });
   }
 });
 
 app.get("/counts", (req, res, next) => {
-  // sending counts with the alias "data"
   res.json({ data: counts });
 });
 
@@ -32,34 +34,41 @@ app.get("/flips/:flipId", (req, res, next) => {
   if (foundFlip) {
     res.json({ data: foundFlip });
   } else {
-    next(`Flip id not found: ${flipId}`);
+    // set error object for passing to error handler
+    next({
+      status: 404,
+      message: `Flip id not found: ${flipId}`,
+    });
   }
 });
 
 app.get("/flips", (req, res) => {
-  // sending flips with the alias "data"
   res.json({ data: flips });
 });
 
-// Variable to hold the next ID
-// Because some IDs may already be used, find the largest assigned ID
-let lastFlipId = flips.reduce((maxId, flip) => Math.max(maxId, flip.id), 0);
-
-app.post("/flips", (req, res, next) => {
+// middleware to validate request body
+function bodyHasResultProperty(req, res, next) {
   const { data: { result } = {} } = req.body;
   if (result) {
-    const newFlip = {
-      id: ++lastFlipId, // Increment last ID, then assign as the current ID
-      result,
-    };
-    flips.push(newFlip);
-    counts[result] = counts[result] + 1; // Increment the counts
-
-    // creating flip status code
-    res.status(201).json({ data: newFlip });
+    next();
   } else {
-    res.sendStatus(400)
+    next({
+      status: 400,
+      message: "A 'result' property is required",
+    });
   }
+}
+
+app.post("/flips", bodyHasResultProperty, (req, res, next) => {
+  let lastFlipId = flips.reduce((maxId, flip) => Math.max(maxId, flip.id), 0);
+  const { data: { result } = {} } = req.body;
+  const newFlip = {
+    id: ++lastFlipId,
+    result,
+  };
+  flips.push(newFlip);
+  counts[result] = counts[result] + 1;
+  res.status(201).json({ data: newFlip });
 });
 
 // Not found handler
@@ -69,9 +78,12 @@ app.use((req, res, next) => {
 });
 
 // Error handler
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.send(err);
+app.use((error, req, res, next) => {
+  console.error(error);
+  // set default error status & message
+  const { status = 500, message = "Something went wrong!" } = error;
+  // send error status code and message in json format
+  res.status(status).json({ error: message });
 });
 
 module.exports = app;
