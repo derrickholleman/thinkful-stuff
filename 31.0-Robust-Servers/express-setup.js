@@ -51,7 +51,7 @@ module.exports = router
 // if child route in nested route
 const router = require("express").Router({ mergeParams = true });
 
-// connect parent route (foo) to child route
+// in foo.router.js connect parent route (foo) to child route
 router.use('/:fooId/child', childRouter)
 
 // default body on POST, PUT requests 
