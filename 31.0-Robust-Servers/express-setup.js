@@ -52,7 +52,7 @@ module.exports = router
 const router = require("express").Router({ mergeParams = true });
 
 // in foo.router.js connect parent route (foo) to child route
-router.use('/:fooId/child', childRouter)
+router.use('/:fooId/child', validationMiddlewareFromFooController, childRouter)
 
 // default body to verify POST, PUT requests 
 const { data: { text, name, birthday, etc } = {} } = req.body;
