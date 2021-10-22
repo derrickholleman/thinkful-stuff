@@ -17,6 +17,7 @@ app.use('/foo', fooRouter)
 app.use('/bar', barRouter)
 
 // error handling in app.js //
+app.get("/favicon.ico", (req, res) => res.sendStatus(204));
 app.use((req, res, next) => {
   next({ status: 404, message: `Not found: ${req.originalUrl}` });
 });
@@ -47,7 +48,7 @@ router.route('/') // creates default route
 module.exports = router
 
 // NESTED ROUTES //
-// if child route in nested route -
+// if child route in nested route
 const router = require("express").Router({ mergeParams = true });
 
 // connect parent route (foo) to child route
