@@ -34,7 +34,7 @@ function methodNotAllowed(req, res, next) {
 
 module.exports = methodNotAllowed;
 
-// router setup
+// foo.router.js setup
 const router = require("express").Router();
 
 // default body on POST, PUT requests 
