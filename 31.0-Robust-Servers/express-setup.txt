@@ -1,0 +1,39 @@
+// server.js
+const { PORT = 5000 } = process.env;
+const app = require("./app");
+
+const listener = () => console.log(`Listening on Port ${PORT}!`);
+app.listen(PORT, listener);
+
+// app.js
+const express = require("express");
+const app = express();
+app.use(express.json());
+module.exports = app;
+
+// error handling in app.js
+app.use((req, res, next) => {
+  next({ status: 404, message: `Not found: ${req.originalUrl}` });
+});
+
+app.use((error, req, res, next) => {
+  console.error(error);
+  // set default error status & message
+  const { status = 500, message = "Something went wrong!" } = error;
+  // send error status code and message in json format
+  res.status(status).json({ error: message });
+});
+
+// method not allowed src/errors/methodNotAllowed.js
+function methodNotAllowed(req, res, next) {
+  next({
+    status: 405,
+    message: `${req.method} not allowed for ${req.originalUrl}`,
+  });
+}
+
+module.exports = methodNotAllowed;
+
+// router setup
+const router = require("express").Router();
+
