@@ -42,14 +42,15 @@ module.exports = methodNotAllowed;
 // foo.router.js setup //
 const router = require("express").Router();
 
-router.route('/') creates default route
+router.route('/') // creates default route
 
 module.exports = router
 
 // NESTED ROUTES //
-if child route in nested route - const router = require("express").Router({ mergeParams = true });
+// if child route in nested route -
+const router = require("express").Router({ mergeParams = true });
 
-connect parent route (foo) to child route
+// connect parent route (foo) to child route
 router.use('/:fooId/child', childRouter)
 
 // default body on POST, PUT requests 
