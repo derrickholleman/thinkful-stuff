@@ -37,3 +37,6 @@ module.exports = methodNotAllowed;
 // router setup
 const router = require("express").Router();
 
+// default body on POST, PUT requests 
+const { data: { text, name, birthday, etc } = {} } = req.body;
+
