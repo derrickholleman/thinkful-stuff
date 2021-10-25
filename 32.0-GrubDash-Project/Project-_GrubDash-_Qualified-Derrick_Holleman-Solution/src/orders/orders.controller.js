@@ -36,33 +36,11 @@ function update(req, res, next) {
     data: { id, deliverTo, mobileNumber, status, dishes },
   } = req.body;
 
-  if (id && id !== res.locals.order.id) {
-    return next({
-      status: 400,
-      message: `Order id does not match route id. Dish: ${id}, Route: ${res.locals.order.id}`,
-    });
-  }
-  
   // if no id keep it the same, else update it
   if (!id) {
     res.locals.order.id = res.locals.order.id;
   } else {
     res.locals.order.id = id;
-  }
-
-  if (!status || status === "invalid") {
-    return next({
-      status: 400,
-      message:
-        "Order must have a status of pending, preparing, out-for-delivery, delivered",
-    });
-  }
-
-  if (status === "delivered") {
-    return next({
-      status: 400,
-      message: "A delivered order cannot be changed",
-    });
   }
 
   res.locals.order.status = status;
@@ -153,10 +131,40 @@ function hasValidInformation(req, res, next) {
   }
 }
 
+function hasValidIdAndStatus(req, res, next) {
+  const {
+    data: { id, status },
+  } = req.body;
+
+  if (id && id !== res.locals.order.id) {
+    return next({
+      status: 400,
+      message: `Order id does not match route id. Dish: ${id}, Route: ${res.locals.order.id}`,
+    });
+  }
+
+  if (!status || status === "invalid") {
+    return next({
+      status: 400,
+      message:
+        "Order must have a status of pending, preparing, out-for-delivery, delivered",
+    });
+  }
+
+  if (status === "delivered") {
+    return next({
+      status: 400,
+      message: "A delivered order cannot be changed",
+    });
+  }
+
+  next()
+}
+
 module.exports = {
   list,
   read: [isValidOrder, read],
   create: [hasValidInformation, create],
-  update: [isValidOrder, hasValidInformation, update],
+  update: [isValidOrder, hasValidInformation, hasValidIdAndStatus, update],
   delete: [isValidOrder, destroy],
 };
