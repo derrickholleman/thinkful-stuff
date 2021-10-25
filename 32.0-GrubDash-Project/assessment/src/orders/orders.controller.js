@@ -131,17 +131,10 @@ function hasValidInformation(req, res, next) {
   }
 }
 
-function hasValidIdAndStatus(req, res, next) {
+function hasValidStatus(req, res, next) {
   const {
-    data: { id, status },
+    data: { status },
   } = req.body;
-
-  if (id && id !== res.locals.order.id) {
-    return next({
-      status: 400,
-      message: `Order id does not match route id. Dish: ${id}, Route: ${res.locals.order.id}`,
-    });
-  }
 
   if (!status || status === "invalid") {
     return next({
@@ -158,13 +151,34 @@ function hasValidIdAndStatus(req, res, next) {
     });
   }
 
-  next()
+  next();
+}
+
+function hasValidId(req, res, next) {
+  const {
+    data: { id },
+  } = req.body;
+
+  if (id && id !== res.locals.order.id) {
+    return next({
+      status: 400,
+      message: `Order id does not match route id. Dish: ${id}, Route: ${res.locals.order.id}`,
+    });
+  }
+
+  next();
 }
 
 module.exports = {
   list,
   read: [isValidOrder, read],
   create: [hasValidInformation, create],
-  update: [isValidOrder, hasValidInformation, hasValidIdAndStatus, update],
+  update: [
+    isValidOrder,
+    hasValidInformation,
+    hasValidId,
+    hasValidStatus,
+    update,
+  ],
   delete: [isValidOrder, destroy],
 };
