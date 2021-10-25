@@ -136,7 +136,13 @@ function hasValidStatus(req, res, next) {
     data: { status },
   } = req.body;
 
-  if (!status || status === "invalid") {
+  if (
+    !status ||
+    (status !== "pending" &&
+      status !== "preparing" &&
+      status !== "out-for-delivery" &&
+      status !== "delivered")
+  ) {
     return next({
       status: 400,
       message:
