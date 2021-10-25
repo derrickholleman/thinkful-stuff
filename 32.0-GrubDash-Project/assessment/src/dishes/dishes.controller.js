@@ -32,16 +32,9 @@ function create(req, res) {
 
 // UPDATE
 function update(req, res, next) {
-  const { 
+  const {
     data: { id, name, description, price, image_url },
   } = req.body;
-
-  if (id && id !== res.locals.dish.id) {
-    return next({
-      status: 400,
-      message: `Dish id does not match route id. Dish: ${id}, Route: ${res.locals.dish.id}`,
-    });
-  }
 
   // if no id keep it the same, else update it
   if (!id) {
@@ -115,9 +108,24 @@ function hasValidInformation(req, res, next) {
   next();
 }
 
+function hasValidId(req, res, next) {
+  const {
+    data: { id },
+  } = req.body;
+
+  if (id && id !== res.locals.dish.id) {
+    return next({
+      status: 400,
+      message: `Dish id does not match route id. Dish: ${id}, Route: ${res.locals.dish.id}`,
+    });
+  }
+
+  next();
+}
+
 module.exports = {
   list,
   read: [isValidDish, read],
   create: [hasValidInformation, create],
-  update: [isValidDish, hasValidInformation, update],
+  update: [isValidDish, hasValidInformation, hasValidId, update],
 };
