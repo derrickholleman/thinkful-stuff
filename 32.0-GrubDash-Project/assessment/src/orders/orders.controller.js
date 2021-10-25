@@ -56,7 +56,7 @@ function destroy(req, res, next) {
   if (res.locals.order.status !== "pending") {
     return next({
       status: 400,
-      message: "Can't delete a pending order!",
+      message: "Can't delete an order unless it's pending!",
     });
   }
   const index = orders.findIndex((order) => order.id === res.locals.order.id);
