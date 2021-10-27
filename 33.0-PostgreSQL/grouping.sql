@@ -55,6 +55,12 @@ from products
 group by aisle 
 order by aisle
 
+-- get amount of distinct aisles in each department 
+select department, count(distinct aisle) as aisles
+from products 
+group by department 
+order by count(distinct aisle) desc
+
 -- get total amount of products in the pet department by aisle
 SELECT aisle, count(*)
 FROM products
