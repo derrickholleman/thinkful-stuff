@@ -83,3 +83,18 @@ select department, avg(price)
 from products 
 group by department
 order by avg(price) desc
+
+-- get all products under $2 sorted by product name
+select department, product_name, price
+from products 
+where price < '2'
+order by product_name
+
+-- find how many items in each department are less than $2
+select department, count(*)
+from products 
+where price < '2'
+group by department 
+order by count(*) desc
+
+
