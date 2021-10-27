@@ -49,10 +49,18 @@ FROM products
 WHERE department = 'pets'
 ORDER BY price desc
 
--- get total amount of products in the pet department
-SELECT count(*)
+-- get total amount of items in each aisle
+select aisle, count(*)
+from products 
+group by aisle 
+order by aisle
+
+-- get total amount of products in the pet department by aisle
+SELECT aisle, count(*)
 FROM products
 WHERE department = 'pets'
+group by aisle
+order by aisle
 
 -- get total number of occurences of each department
 SELECT department, count(*)
