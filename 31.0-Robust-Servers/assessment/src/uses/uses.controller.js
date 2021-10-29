@@ -43,19 +43,6 @@ function isValidUse(req, res, next) {
   }
 }
 
-function hasValidInformation(req, res, next) {
-  const {
-    data: { time },
-  } = req.body;
-
-  if (!time) {
-    next({
-      status: 400,
-      message: `Please add a time property`,
-    });
-  }
-}
-
 module.exports = {
   list,
   read: [isValidUse, read],
