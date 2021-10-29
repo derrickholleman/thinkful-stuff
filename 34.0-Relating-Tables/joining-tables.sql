@@ -12,8 +12,9 @@ select
  	c.first_name as customer_name,
  	c.email
 from 
-orders o join customers c 
-on o.order_id = c.customer_id 
+	orders o join customers c 
+on 
+	o.order_id = c.customer_id 
 
 -- List the order dates, first and last names, and phone numbers of Thinkful Books customers with rejected orders (order_status = 3)
 select 
@@ -22,9 +23,11 @@ select
  	c.phone,
  	o.order_date
 from 
-customers c join orders o 
-on c.customer_id = o.customer_id 
-where order_status = 3
+	customers c join orders o 
+on 
+	c.customer_id = o.customer_id 
+where 
+	order_status = 3
 
 -- List the employee's first and last names and the employees' project names.  join three tables, starting out with the one they have in common
 select 
