@@ -1,29 +1,31 @@
 import React from "react";
-import { Link, Route, useParams, useRouteMatch } from "react-router-dom";
-import Post from "./Post";
+import users from "./data";
+import { useParams, Link } from "react-router-dom";
 
-const Posts = ({ users }) => {
-  const { url, path } = useRouteMatch();
+const Posts = () => {
   const { userId } = useParams();
-
   const user = users.find((user) => `${user.id}` === userId);
 
   return (
     <div>
+      <Link to="/">Back to Users</Link>
+      <h1 className="page-title">{user.name}</h1>
+
+      <ul>
+        <li>
+          <Link to={`/users/${user.id}`}>Profile</Link>
+        </li>
+        <li>
+          <Link to={`/users/${user.id}/posts`}>Posts</Link>
+        </li>
+      </ul>
       <ul>
         {user.posts.map((post) => (
-          <li key={`${post.id}`}>
-            <Link to={`${url}/${post.id}`}>{post.title}</Link>
+          <li key={post.id}>
+            <Link to={`/users/${userId}/posts/${post.id}`}>{post.title}</Link>
           </li>
         ))}
       </ul>
-
-      <Route exact path={path}>
-        <p>No post selected...</p>
-      </Route>
-      <Route path={`${path}/:postId`}>
-        <Post user={user} />
-      </Route>
     </div>
   );
 };

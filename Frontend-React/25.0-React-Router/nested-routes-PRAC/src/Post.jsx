@@ -1,14 +1,21 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import users from "./data";
+import { useParams, Link } from "react-router-dom";
 
-const Post = ({ user }) => {
-  const { postId } = useParams();
-
+const Post = () => {
+  const { userId, postId } = useParams();
+  const user = users.find((user) => `${user.id}` === userId);
   const post = user.posts.find((post) => `${post.id}` === postId);
-
   return (
     <div>
-      <p>{post.body}</p>
+      <Link to={`/users/${userId}/posts`}>Back to posts</Link>
+
+      {post && (
+        <div>
+          <h1 className="page-title">{post.title}</h1>
+          <p>{post.body}</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,37 +1,45 @@
 import React from "react";
-import { Link, Route, useParams, useRouteMatch } from "react-router-dom";
-import Posts from "./Posts";
-import UserProfile from "./UserProfile";
+import { useParams, Link } from "react-router-dom";
+import users from "./data";
 
-const User = ({ users }) => {
-  const { url, path } = useRouteMatch();
+const User = () => {
   const { userId } = useParams();
 
   const user = users.find((user) => `${user.id}` === userId);
 
   return (
     <div>
-      <Link to="/">Back to User List</Link>
-      <h1>{user.name}</h1>
+      <Link to="/">Back to Users</Link>
+      <h1 className="page-title">{user.name}</h1>
 
-      {/* LINKS */}
       <ul>
         <li>
-          <Link to={url}>Profile</Link>
+          <Link to={`/users/${user.id}`}>Profile</Link>
         </li>
         <li>
-          <Link to={`${url}/posts`}>Posts</Link>
+          <Link to={`/users/${user.id}/posts`}>Posts</Link>
         </li>
       </ul>
 
+      <h2>User Name</h2>
+      <p>{user.username}</p>
+      <hr />
 
-      {/* ROUTES */}
-      <Route exact path={path}>
-        <UserProfile user={user}/>
-      </Route>
-      <Route path={`${path}/posts`}>
-        <Posts users={users}/>
-      </Route>
+      <h2>Email</h2>
+      <p>{user.email}</p>
+      <hr />
+
+      <h2>Phone</h2>
+      <p>{user.phone}</p>
+      <hr />
+
+      <h2>Company</h2>
+      <p>{user.company.name}</p>
+      <hr />
+
+      <h2>Website</h2>
+      <p>{user.website}</p>
+      <hr />
     </div>
   );
 };
