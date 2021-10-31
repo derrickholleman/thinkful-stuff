@@ -4,8 +4,9 @@ import { useParams, Link } from "react-router-dom";
 
 const Post = () => {
   const { userId, postId } = useParams();
-  const user = users.find((user) => `${user.id}` === userId);
-  const post = user.posts.find((post) => `${post.id}` === postId);
+  const post = users
+    .find((user) => `${user.id}` === userId)
+    .posts.find((post) => `${post.id}` === postId);
   return (
     <div>
       <Link to={`/users/${userId}/posts`}>Back to posts</Link>
