@@ -1,0 +1,6 @@
+npx knex migrate:make <TableName> - creates a new file in migrations folder
+npx knex migrate:latest - executes exports.up
+npx knex migrate:rollback - executes exports.down
+npx knex migrate:up <TableName> - execute a migration again
+npx knex migrate:down <TableName> - rollback a migration for a specific file
+npx knex migrate:list - gets list of completed/pending migrations
