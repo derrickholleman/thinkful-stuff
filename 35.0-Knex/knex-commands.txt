@@ -4,3 +4,5 @@ npx knex migrate:rollback - executes exports.down
 npx knex migrate:up <TableName> - execute a migration again
 npx knex migrate:down <TableName> - rollback a migration for a specific file
 npx knex migrate:list - gets list of completed/pending migrations
+
+any change to a table or column needs a new migration file that specifies the change
