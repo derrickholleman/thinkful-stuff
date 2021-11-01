@@ -18,3 +18,6 @@ module.exports = {
 };
 
 // create a connection.js file in db folder
+
+// npx knex migrate:latest - run all migrations
+// npx knex seed:run - run all the seed files
