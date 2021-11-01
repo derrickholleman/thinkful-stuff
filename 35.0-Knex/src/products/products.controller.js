@@ -1,5 +1,6 @@
 const productsService = require("./products.service");
 
+// LIST
 function list(req, res, next) {
   productsService
     .list()
@@ -7,6 +8,7 @@ function list(req, res, next) {
     .catch(next);
 }
 
+// READ
 function read(req, res, next) {
   const { product: data } = res.locals;
   res.json({ data });

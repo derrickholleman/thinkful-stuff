@@ -1,25 +1,42 @@
 const suppliersService = require("./suppliers.service");
 const hasProperties = require("../errors/hasProperties");
 
+// LIST
 function list(req, res, next) {
   suppliersService
     .list()
     .then((data) => res.json({ data }))
     .catch(next);
 }
+
+// CREATE
 function create(req, res, next) {
+  const { data } = req.body;
   suppliersService
-    .create(req.body.data)
+    .create(data)
     .then((data) => res.status(201).json({ data }))
     .catch(next);
 }
 
+// UPDATE
 function update(req, res, next) {
-  res.json({ data: { supplier_name: "updated supplier" } });
+  const updatedSupplier = {
+    ...req.body.data,
+    // keeps same id on update
+    supplier_id: res.locals.supplier.supplier_id,
+  };
+  suppliersService
+    .update(updatedSupplier)
+    .then((data) => res.json({ data }))
+    .catch(next);
 }
 
+// DESTROY
 function destroy(req, res, next) {
-  res.sendStatus(204);
+  suppliersService
+    .delete(res.locals.supplier.supplier_id)
+    .then(() => res.sendStatus(204))
+    .catch(next);
 }
 
 // VALIDATION
@@ -38,11 +55,10 @@ const VALID_PROPERTIES = [
 ];
 
 // check for required properties.  pass properties into function from error folder
-const hasRequiredProperties = hasProperties("supplier_name", "supplier_email"); 
+const hasRequiredProperties = hasProperties("supplier_name", "supplier_email");
 
 function hasOnlyValidProperties(req, res, next) {
   const { data = {} } = req.body;
-
   // iterate through keys in req.body
   const invalidFields = Object.keys(data).filter(
     (field) => !VALID_PROPERTIES.includes(field)
@@ -58,9 +74,29 @@ function hasOnlyValidProperties(req, res, next) {
   next();
 }
 
+function supplierExists(req, res, next) {
+  const { supplierId } = req.params;
+
+  suppliersService
+    .read(supplierId)
+    .then((supplier) => {
+      if (supplier) {
+        res.locals.supplier = supplier;
+        return next();
+      }
+      next({ status: 404, message: `Supplier cannot be found.` });
+    })
+    .catch(next);
+}
+
 module.exports = {
   list,
   create: [hasOnlyValidProperties, hasRequiredProperties, create],
-  update,
-  delete: destroy,
+  update: [
+    supplierExists,
+    hasOnlyValidProperties,
+    hasRequiredProperties,
+    update,
+  ],
+  delete: [supplierExists, destroy],
 };

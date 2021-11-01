@@ -1,5 +1,6 @@
 const categoriesService = require("./categories.service");
 
+// LIST 
 async function list(req, res, next) {
   categoriesService
     // list() imported from categoriesService
