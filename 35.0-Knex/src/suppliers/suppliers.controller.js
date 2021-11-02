@@ -39,7 +39,7 @@ function destroy(req, res, next) {
 }
 
 // VALIDATION
-// list out all columns in suppliers table that request needs to have
+// list out all columns in suppliers table that request needs to have (for create and update)
 const VALID_PROPERTIES = [
   "supplier_name",
   "supplier_address_line_1",
