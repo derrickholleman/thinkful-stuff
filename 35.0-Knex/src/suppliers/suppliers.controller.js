@@ -13,14 +13,14 @@ function list(req, res, next) {
 function create(req, res, next) {
   suppliersService
     .create(req.body)
-    .then((data) => res.status(201).json({ data: req.body }))
+    .then(() => res.status(201).json({ data: req.body }))
     .catch(next);
 }
 
 // UPDATE
 function update(req, res, next) {
   const updatedSupplier = {
-    ...req.body.data,
+    ...req.body,
     // keeps same id on update
     supplier_id: res.locals.supplier.supplier_id,
   };
