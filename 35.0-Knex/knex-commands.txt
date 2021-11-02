@@ -9,4 +9,5 @@ npx knex seed:make <seed> - create a new data seed.  each seed should be numbere
 npx knex seed:run - run all the seed files
 npx knex seed:run --specific=seed-filename.js - run specific seed
 
-any change to a table or column needs a new migration file that specifies the change
+migrations - any change to a table or column needs a new migration file that specifies the change
+seeds - any new table data needs to be inserted with a seed
