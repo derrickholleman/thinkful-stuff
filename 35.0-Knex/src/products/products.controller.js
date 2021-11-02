@@ -2,35 +2,30 @@ const productsService = require("./products.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 // LIST
-function list(req, res, next) {
-  productsService
-    .list()
-    .then((data) => res.json({ data }))
-    .catch(next);
+async function list(req, res, next) {
+  const data = await productsService.list()
+  res.json({ data })
 }
 
 // READ
-function read(req, res, next) {
-  const { product: data } = res.locals;
-  res.json({ data });
+async function read(req, res, next) {
+  res.json({ data: res.locals.product })
 }
 
 // VALIDATION
-function productExists(req, res, next) {
+async function productExists(req, res, next) {
   const { productId } = req.params;
-  productsService
-    .read(productId)
-    .then((product) => {
-      if (product) {
-        res.locals.product = product;
-        return next();
-      }
-      next({
-        status: 404,
-        message: "Product cannot be found",
-      });
+  const product = await productsService.read(productId)
+  
+  if (product) {
+    res.locals.product = product
+    return next()
+  } else {
+    next({
+      status: 404,
+      message: "Product cannot be found"
     })
-    .catch(next);
+  }
 }
 
 module.exports = {

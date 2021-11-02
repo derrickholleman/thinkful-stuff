@@ -6,6 +6,7 @@ router.route("/").get(controller.list).post(controller.create).all(methodNotAllo
 
 router
   .route("/:supplierId")
+  .get(controller.read)
   .put(controller.update)
   .delete(controller.delete)
   .all(methodNotAllowed);

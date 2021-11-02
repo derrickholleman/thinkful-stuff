@@ -3,42 +3,39 @@ const hasProperties = require("../errors/hasProperties");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 // LIST
-function list(req, res, next) {
-  suppliersService
-    .list()
-    .then((data) => res.json({ data }))
-    .catch(next);
+async function list(req, res, next) {
+  const data = await suppliersService.list()
+  res.json({ data })
+}
+
+// READ
+async function read(req, res, next) {
+  const data = await suppliersService.read(res.locals.supplier.supplier_id)
+  res.json({ data: data })
 }
 
 // CREATE
-function create(req, res, next) {
-  const { data = {} } = req.body;
-  suppliersService
-    .create(data)
-    .then(() => res.status(201).json({ data: data }))
-    .catch(next);
+async function create(req, res, next) {
+  const data = await suppliersService.create(req.body.data)
+  res.status(201).json({ data })
 }
 
 // UPDATE
-function update(req, res, next) {
-  const { data = {} } = req.body;
+async function update(req, res, next) {
+  const { supplier } = res.locals
   const updatedSupplier = {
-    ...data,
-    // keeps same id on update
-    supplier_id: res.locals.supplier.supplier_id,
-  };
-  suppliersService
-    .update(updatedSupplier)
-    .then((data) => res.json({ data }))
-    .catch(next);
+    ...req.body.data,
+    supplier_id: supplier.supplier_id
+  }
+  const data = await suppliersService.update(updatedSupplier)
+  res.json({ data })
 }
 
 // DESTROY
-function destroy(req, res, next) {
-  suppliersService
-    .delete(res.locals.supplier.supplier_id)
-    .then(() => res.sendStatus(204))
-    .catch(next);
+async function destroy(req, res, next) {
+  const { supplier } = res.locals
+  await suppliersService.delete(supplier.supplier_id)
+  res.sendStatus(204)
 }
 
 // VALIDATION
@@ -75,23 +72,21 @@ function hasOnlyValidProperties(req, res, next) {
   next();
 }
 
-function supplierExists(req, res, next) {
+async function supplierExists(req, res, next) {
   const { supplierId } = req.params;
+  const supplier = await suppliersService.read(supplierId);
 
-  suppliersService
-    .read(supplierId)
-    .then((supplier) => {
-      if (supplier) {
-        res.locals.supplier = supplier;
-        return next();
-      }
-      next({ status: 404, message: `Supplier cannot be found.` });
-    })
-    .catch(next);
+  if (supplier) {
+    res.locals.supplier = supplier;
+    return next();
+  } else {
+    next({ status: 404, message: `Supplier cannot be found.` });
+  }
 }
 
 module.exports = {
   list: asyncErrorBoundary(list),
+  read: [asyncErrorBoundary(supplierExists), asyncErrorBoundary(read)],
   create: [
     asyncErrorBoundary(hasOnlyValidProperties),
     asyncErrorBoundary(hasRequiredProperties),
