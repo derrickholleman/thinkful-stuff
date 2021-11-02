@@ -11,10 +11,9 @@ function list(req, res, next) {
 
 // CREATE
 function create(req, res, next) {
-  const { data } = req.body;
   suppliersService
-    .create(data)
-    .then((data) => res.status(201).json({ data }))
+    .create(req.body)
+    .then((data) => res.status(201).json({ data: req.body }))
     .catch(next);
 }
 
