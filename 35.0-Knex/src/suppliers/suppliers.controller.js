@@ -1,5 +1,6 @@
 const suppliersService = require("./suppliers.service");
 const hasProperties = require("../errors/hasProperties");
+const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 // LIST
 function list(req, res, next) {
@@ -11,7 +12,7 @@ function list(req, res, next) {
 
 // CREATE
 function create(req, res, next) {
-  const { data = {} } = req.body
+  const { data = {} } = req.body;
   suppliersService
     .create(data)
     .then(() => res.status(201).json({ data: data }))
@@ -20,7 +21,7 @@ function create(req, res, next) {
 
 // UPDATE
 function update(req, res, next) {
-  const { data = {} } = req.body
+  const { data = {} } = req.body;
   const updatedSupplier = {
     ...data,
     // keeps same id on update
@@ -90,13 +91,17 @@ function supplierExists(req, res, next) {
 }
 
 module.exports = {
-  list,
-  create: [hasOnlyValidProperties, hasRequiredProperties, create],
-  update: [
-    supplierExists,
-    hasOnlyValidProperties,
-    hasRequiredProperties,
-    update,
+  list: asyncErrorBoundary(list),
+  create: [
+    asyncErrorBoundary(hasOnlyValidProperties),
+    asyncErrorBoundary(hasRequiredProperties),
+    asyncErrorBoundary(create),
   ],
-  delete: [supplierExists, destroy],
+  update: [
+    asyncErrorBoundary(supplierExists),
+    asyncErrorBoundary(hasOnlyValidProperties),
+    asyncErrorBoundary(hasRequiredProperties),
+    asyncErrorBoundary(update),
+  ],
+  delete: [asyncErrorBoundary(supplierExists), asyncErrorBoundary(destroy)],
 };

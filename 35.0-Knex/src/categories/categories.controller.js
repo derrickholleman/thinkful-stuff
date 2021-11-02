@@ -1,4 +1,5 @@
 const categoriesService = require("./categories.service");
+const asyncErrorBoundary = require('../errors/asyncErrorBoundary')
 
 // LIST
 async function list(req, res, next) {
@@ -29,6 +30,6 @@ async function categoryExists(req, res, next) {
 }
 
 module.exports = {
-  list,
-  read: [categoryExists, read],
+  list: asyncErrorBoundary(list),
+  read: [asyncErrorBoundary(categoryExists), asyncErrorBoundary(read)],
 };
