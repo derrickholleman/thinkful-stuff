@@ -49,10 +49,9 @@ async function read(req, res, next) {
 }
 
 async function update(req, res, next) {
-  const { data = {} } = req.body
   const updatedRestaurant = {
     ...res.locals.restaurant,
-    ...data,
+    ...req.body.data,
     restaurant_id: res.locals.restaurant.restaurant_id,
   };
 
