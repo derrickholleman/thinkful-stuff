@@ -5,7 +5,7 @@ npx knex migrate:up <TableName> - execute a migration for specific file
 npx knex migrate:down <TableName> - rollback a migration for a specific file
 npx knex migrate:list - gets list of completed/pending migrations
 
-npx knex seed:make <seed> - create a new data seed.  each seed should be numbered 00-seed, 01-seed etc
+npx knex seed:make <seed> - creates a new file in seeds folder.  each seed should be numbered 00-seed, 01-seed etc
 npx knex seed:run - run all the seed files
 npx knex seed:run --specific=seed-filename.js - run specific seed
 
