@@ -11,16 +11,18 @@ function list(req, res, next) {
 
 // CREATE
 function create(req, res, next) {
+  const { data = {} } = req.body
   suppliersService
-    .create(req.body)
-    .then(() => res.status(201).json({ data: req.body }))
+    .create(data)
+    .then(() => res.status(201).json({ data: data }))
     .catch(next);
 }
 
 // UPDATE
 function update(req, res, next) {
+  const { data = {} } = req.body
   const updatedSupplier = {
-    ...req.body,
+    ...data,
     // keeps same id on update
     supplier_id: res.locals.supplier.supplier_id,
   };
@@ -58,7 +60,7 @@ const hasRequiredProperties = hasProperties("supplier_name", "supplier_email");
 
 function hasOnlyValidProperties(req, res, next) {
   // iterate through keys in req.body
-  const invalidFields = Object.keys(req.body).filter(
+  const invalidFields = Object.keys(req.body.data).filter(
     (field) => !VALID_PROPERTIES.includes(field)
   );
 
