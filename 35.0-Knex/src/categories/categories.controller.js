@@ -8,7 +8,7 @@ async function list(req, res, next) {
 
 // READ
 async function read(req, res, next) {
-  const data = await categoriesService.read();
+  await categoriesService.read();
   res.json({ data: res.locals.category });
 }
 
