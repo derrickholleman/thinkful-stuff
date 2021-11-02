@@ -37,9 +37,10 @@ async function list(req, res, next) {
 }
 
 async function create(req, res, next) {
+  const { data = {} } = req.body
   await restaurantsService
-  .create(req.body)
-  .then(() => res.status(201).json({ data: req.body }))
+  .create(data)
+  .then(() => res.status(201).json({ data: data }))
   .catch(next)
 }
 
@@ -48,9 +49,10 @@ async function read(req, res, next) {
 }
 
 async function update(req, res, next) {
+  const { data = {} } = req.body
   const updatedRestaurant = {
     ...res.locals.restaurant,
-    ...req.body,
+    ...data,
     restaurant_id: res.locals.restaurant.restaurant_id,
   };
 
