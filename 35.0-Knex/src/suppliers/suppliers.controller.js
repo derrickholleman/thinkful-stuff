@@ -57,9 +57,8 @@ const VALID_PROPERTIES = [
 const hasRequiredProperties = hasProperties("supplier_name", "supplier_email");
 
 function hasOnlyValidProperties(req, res, next) {
-  const { data = {} } = req.body;
   // iterate through keys in req.body
-  const invalidFields = Object.keys(data).filter(
+  const invalidFields = Object.keys(req.body).filter(
     (field) => !VALID_PROPERTIES.includes(field)
   );
 
