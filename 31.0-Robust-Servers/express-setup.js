@@ -42,6 +42,7 @@ module.exports = methodNotAllowed;
 
 // foo.router.js setup //
 const router = require("express").Router();
+const controller = require('./foo.controller')
 
 router.route('/') // creates default route
 

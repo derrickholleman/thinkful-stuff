@@ -1,0 +1,5 @@
+nested routes logic
+
+/users/:userId/projects/:projectId
+
+you have all the users, then each user has projects that are tied to the individual user.  and each user's project has an id
