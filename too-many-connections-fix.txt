@@ -1,0 +1,3 @@
+too many connections error in Dbeaver
+
+right click on taskbar -> task manager -> services -> postgresql-x64-13 -> right click then "restart"
