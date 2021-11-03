@@ -28,21 +28,25 @@ function list() {
   return knex("products").select("*");
 }
 
-// READ PRODUCTS AND CATEGORIES
-// join products_categories to products based on id match
-// join categories to products_categories based on id match
+// READ PRODUCTS AND CATEGORIES AND SUPPLIERS
+// join products and suppliers based on supplier_id
+// join products_categories to products based on product_id
+// join categories to products_categories based on category_id match
 // select all of products, all of categories where product_id = product_id in parameter
 function read(product_id) {
   return knex("products as p")
+    .join("suppliers as s", "s.supplier_id", "p.supplier_id")
     .join("products_categories as pc", "p.product_id", "pc.product_id")
     .join("categories as c", "pc.category_id", "c.category_id")
-    .select("p.*", "c.*")
+    .select("p.*", "c.*", "s.*")
     .where({ "p.product_id": product_id })
     .first()
+    .then(addSupplier)
     .then(addCategory);
 }
 
 // READ PRODUCTS AND CORRESPONDING SUPPLIER
+// EXAMPLE OF JOINING 2 TABLES
 function readProductAndSupplier(product_id) {
   return knex("products as p")
     .join("suppliers as s", "p.supplier_id", "s.supplier_id")
