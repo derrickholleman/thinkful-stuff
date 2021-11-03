@@ -1,5 +1,52 @@
 nested routes logic
 
-/users/:userId/projects/:projectId
+/note/:noteId/ratings/:ratingId
 
-you have all the users, then each user has projects that are tied to the individual user.  and each user's project has an id
+you have all the notes, then each note has ratings that are tied to the individual note.  and each note's rating has an id.
+  /ratings/:ratingId also has it's own separate route.
+
+// USERS
+[
+  {
+    id: 1,
+    text: "REST stands for Representational State Transfer",
+  },
+  {
+    id: 2,
+    text: "REST maps CRUDL operations to HTTP methods",
+  },
+  {
+    id: 3,
+    text: "Some JSON API's don't follow the JSON API specification",
+  },
+];
+
+// RATINGS
+[
+  {
+    id: 1,
+    noteId: 1,
+    stars: 5,
+    comment:
+      "This note is awesome! Thanks for the great service. You guys rock!",
+  },
+  {
+    id: 2,
+    noteId: 1,
+    stars: 5,
+    comment:
+      "I would gladly pay over 600 dollars for this note. This note did exactly what you said it does.",
+  },
+  {
+    id: 3,
+    noteId: 2,
+    stars: 4,
+    comment: "I don't always clop, but when I do, it's because of this note.",
+  },
+  {
+    id: 4,
+    noteId: 3,
+    stars: 3,
+    comment: "This note impressed me on multiple levels.",
+  },
+];
