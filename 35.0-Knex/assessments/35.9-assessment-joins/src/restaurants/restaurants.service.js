@@ -19,13 +19,6 @@ function listAverageRatingByOwner() {
 }
 
 module.exports = {
-  averageRating,
-  count,
-  create,
-  delete: destroy,
   list,
   listAverageRatingByOwner,
-  read,
-  readHighestRated,
-  update,
 };

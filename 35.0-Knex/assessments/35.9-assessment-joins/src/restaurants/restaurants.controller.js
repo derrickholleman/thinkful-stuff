@@ -35,17 +35,6 @@ async function list(req, res) {
 }
 
 module.exports = {
-  averageRating: asyncErrorBoundary(averageRating),
-  count: asyncErrorBoundary(count),
-  create: [hasValidFields, asyncErrorBoundary(create)],
-  delete: [asyncErrorBoundary(restaurantExists), asyncErrorBoundary(destroy)],
   list: asyncErrorBoundary(list),
-  listAverageRatingByOwner: asyncErrorBoundary(listAverageRatingByOwner),
-  read: [asyncErrorBoundary(restaurantExists), read],
-  readHighestRated: asyncErrorBoundary(readHighestRated),
-  update: [
-    hasValidFields,
-    asyncErrorBoundary(restaurantExists),
-    asyncErrorBoundary(update),
-  ],
+  listAverageRatingByOwner: asyncErrorBoundary(listAverageRatingByOwner)
 };
