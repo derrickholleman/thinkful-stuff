@@ -3,7 +3,8 @@ nested routes logic
 /note/:noteId/ratings/:ratingId
 
 you have all the notes, then each note has ratings that are tied to the individual note.  and each note's rating has an id.
-  /ratings/:ratingId also has it's own separate route.
+
+/ratings/:ratingId also has it's own separate route.
 
 // USERS
 [
