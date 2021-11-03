@@ -45,6 +45,20 @@ async function productExists(req, res, next) {
     });
   }
 }
+async function productExistsforProductSupplier(req, res, next) {
+  const { productId } = req.params;
+  const product = await productsService.readProductAndSupplier(productId);
+
+  if (product) {
+    res.locals.product = product;
+    return next();
+  } else {
+    next({
+      status: 404,
+      message: "Product cannot be found",
+    });
+  }
+}
 
 module.exports = {
   list: asyncErrorBoundary(list),
@@ -52,4 +66,8 @@ module.exports = {
   listOutOfStockCount: asyncErrorBoundary(listOutOfStockCount),
   listPriceSummary: asyncErrorBoundary(listPriceSummary),
   totalWeightByProduct: asyncErrorBoundary(totalWeightByProduct),
+  readProductAndSupplier: [
+    asyncErrorBoundary(productExistsforProductSupplier),
+    asyncErrorBoundary(read),
+  ],
 };

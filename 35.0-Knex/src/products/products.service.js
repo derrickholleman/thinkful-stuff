@@ -1,11 +1,26 @@
+const { first } = require("lodash");
 const knex = require("../db/connection");
 const mapProperties = require("../utils/map-properties");
 
+// LODASH for mapping objects
 const addCategory = mapProperties({
   // keys must match column names in table
   category_id: "category.category_id",
   category_name: "category.category_name",
   category_description: "category.category_description",
+});
+const addSupplier = mapProperties({
+  supplier_id: "supplier.supplier_id",
+  supplier_name: "supplier.supplier_name",
+  supplier_address_line_1: "supplier.supplier_address_line_1",
+  supplier_address_line_2: "supplier.supplier_address_line_2",
+  supplier_state: "supplier.supplier_state",
+  supplier_zip: "supplier.supplier_zip",
+  supplier_city: "supplier.supplier_city",
+  supplier_phone: "supplier.supplier_phone",
+  supplier_email: "supplier.supplier_email",
+  supplier_notes: "supplier.supplier_notes",
+  supplier_type_of_goods: "supplier.supplier_type_of_goods",
 });
 
 // LIST
@@ -25,6 +40,16 @@ function read(product_id) {
     .where({ "p.product_id": product_id })
     .first()
     .then(addCategory);
+}
+
+// READ PRODUCTS AND CORRESPONDING SUPPLIER
+function readProductAndSupplier(product_id) {
+  return knex("products as p")
+    .join("suppliers as s", "p.supplier_id", "s.supplier_id")
+    .select("p.*", "s.*")
+    .where({ "p.product_id": product_id })
+    .first()
+    .then(addSupplier);
 }
 
 // COUNT
@@ -68,4 +93,5 @@ module.exports = {
   listOutOfStockCount,
   listPriceSummary,
   totalWeightByProduct,
+  readProductAndSupplier,
 };

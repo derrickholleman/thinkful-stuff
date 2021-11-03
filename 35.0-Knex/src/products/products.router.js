@@ -22,4 +22,10 @@ router
 // check if productId route contains only numbers
 router.route("/:productId([0-9]+)").get(controller.read).all(methodNotAllowed);
 
+// get product and supplier info
+router
+  .route("/:productId/product-supplier")
+  .get(controller.readProductAndSupplier)
+  .all(methodNotAllowed);
+
 module.exports = router;
