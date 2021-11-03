@@ -1,6 +1,6 @@
 FULL STACK DATA FLOW
 
-PostgreSQL database table constraints used to store data are defined through Knex migration queries.  Test data is optionally seeded through Knex seed files.  
+The PostgreSQL DB table constraints used to store data are defined through Knex migration queries.  Test data is optionally seeded through Knex seed files.  
 
 Express defines API routes in router.js file which are imported into server/app.js.  The routes define the valid HTTP requests for each route from the controller.js files.  the controller.js functions interact with the SQL database through Knex queries that are imported from the service.js files.  
 
