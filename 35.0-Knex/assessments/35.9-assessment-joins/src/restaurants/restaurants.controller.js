@@ -24,7 +24,7 @@ function hasValidFields(req, res, next) {
 
 async function listAverageRatingByOwner(req, res, next) {
   let data = await service.listAverageRatingByOwner();
-  // get response object and map in format you want.
+  // get response array and map in format you want.
   // check res object by doing res.json({ data: data })
   data = data.map((restaurant) => {
     return { avg: Number(restaurant.avg), owner_name: restaurant.owner_name };
