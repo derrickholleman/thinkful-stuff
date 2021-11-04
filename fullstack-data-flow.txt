@@ -4,6 +4,6 @@ The PostgreSQL DB table constraints used to store data are defined through Knex 
 
 Express defines API routes in router.js file which are imported into server/app.js.  The routes define the valid HTTP requests for each route from the controller.js files.  the controller.js functions interact with the SQL database through Knex queries that are imported from the service.js files.  
 
-Service.js queries -> Controller.js http requests -> Router.js routes ->
+Service.js SQL queries -> Controller.js http requests -> Router.js routes ->
 
 The front-end can then make API calls to these URLs that are defined in the server using fetch("URL/route")
