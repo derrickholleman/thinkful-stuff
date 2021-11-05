@@ -20,8 +20,8 @@ create a development database and production database and connect with DBeaver
 make sure to migrate and seed db if needed
 
 create Procfile in top directory and add 
-web: node ./api/index.js
+web: node ./src/app.js
 
 heroku create and git push heroku main
 
-heroku config:set PRODUCTION_DATABASE_URL=<databaseURL>
+heroku config:set <DATABASE KEY NAME>=<databaseURL>
