@@ -1,0 +1,3 @@
+initialize as git repo - git init/add/commit.
+heroku create
+git push heroku main
