@@ -24,4 +24,4 @@ web: node ./src/app.js
 
 heroku create and git push heroku main
 
-heroku config:set <DATABASE KEY NAME>=<databaseURL>
+heroku config:set <DATABASE KEY NAME>=<HEROKU_URL>
