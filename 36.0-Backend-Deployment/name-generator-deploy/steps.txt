@@ -1,0 +1,7 @@
+make separate repositories for both client and server
+
+git init/add/commit for each and upload to github
+
+for server - heroku create <customName> - git push heroku main
+
+for client - do netlify deployment process and make sure the fetch URL is connected to the URL of the deployed client repo
