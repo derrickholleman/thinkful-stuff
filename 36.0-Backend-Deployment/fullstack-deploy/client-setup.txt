@@ -3,3 +3,5 @@ set REACT_APP_API_BASE_URL=<heroku_deployed_url>
 
 in api folder
 const URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000"
+
+if using Netlify, set env variables in deploy settings tab

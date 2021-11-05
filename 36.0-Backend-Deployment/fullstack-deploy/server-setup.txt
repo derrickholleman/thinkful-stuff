@@ -5,6 +5,8 @@ DEVELOPMENT_DATABASE_URL=""
 PRODUCTION_DATABASE_URL=""
 
 put at top of knexfile.js
+IF DB/PROD DBS DO
+---------------------------------
 const {
   NODE_ENV = "development",
   DEVELOPMENT_DATABASE_URL,
@@ -14,6 +16,13 @@ const URL =
   NODE_ENV === "production"
     ? PRODUCTION_DATABASE_URL
     : DEVELOPMENT_DATABASE_URL;
+---------------------------------
+
+IF ONLY DEVELOPMENT DB
+---------------------------------
+const { NODE_ENV = "development", DATABASE_URL } = process.env;
+const URL = NODE_ENV === "production" ? DATABASE_URL : DATABASE_URL;
+---------------------------------
 
 create a development database and production database and connect with DBeaver
 

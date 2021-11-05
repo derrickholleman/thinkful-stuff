@@ -15,6 +15,16 @@ module.exports = {
       directory: path.join(__dirname, "src", "db", "seeds"),
     },
   },
+  production: {
+    client: "postgresql",
+    connection: DATABASE_URL,
+    migrations: {
+      directory: path.join(__dirname, "src", "db", "migrations"),
+    },
+    seeds: {
+      directory: path.join(__dirname, "src", "db", "seeds"),
+    },
+  },
 };
 
 // create a connection.js file in db folder
