@@ -31,6 +31,6 @@ make sure to migrate and seed db if needed
 create Procfile in top directory and add 
 web: node ./src/app.js
 
-heroku create and git push heroku main
+heroku create <databaseURLName> and git push heroku main
 
 heroku config:set <DATABASE KEY NAME>=<HEROKU_URL>
