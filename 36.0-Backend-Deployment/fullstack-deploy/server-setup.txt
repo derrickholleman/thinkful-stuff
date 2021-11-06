@@ -1,8 +1,8 @@
 create git repo for server
 
 create .env
-DEVELOPMENT_DATABASE_URL=""
-PRODUCTION_DATABASE_URL=""
+DEVELOPMENT_DATABASE_URL="ELEPHANTSQLURL"
+PRODUCTION_DATABASE_URL="ELEPHANTSQLURL"
 
 put at top of knexfile.js
 IF DB/PROD DBS DO
@@ -33,4 +33,4 @@ web: node ./src/app.js
 
 heroku create <databaseURLName> and git push heroku main
 
-heroku config:set <DATABASE KEY NAME>=<HEROKU_URL>
+heroku config:set <DATABASE KEY NAME>=<ELEPHANTSQL_URL>
