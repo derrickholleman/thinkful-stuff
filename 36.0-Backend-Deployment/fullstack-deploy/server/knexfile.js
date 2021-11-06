@@ -17,6 +17,7 @@ module.exports = {
       directory: path.join(__dirname, "src", "db", "seeds"),
     },
   },
+  // heroku uses production object
   production: {
     client: "postgresql",
     connection: URL,

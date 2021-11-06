@@ -5,7 +5,7 @@ DEVELOPMENT_DATABASE_URL="ELEPHANTSQLURL"
 PRODUCTION_DATABASE_URL="ELEPHANTSQLURL"
 
 put at top of knexfile.js
-IF DB/PROD DBS DO
+IF DEV/PROD DBS DO
 ---------------------------------
 const {
   NODE_ENV = "development",
