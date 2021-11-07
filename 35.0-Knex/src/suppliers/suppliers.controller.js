@@ -11,7 +11,7 @@ async function list(req, res, next) {
 // READ
 async function read(req, res, next) {
   const data = await suppliersService.read(res.locals.supplier.supplier_id)
-  res.json({ data: data })
+  res.json({ data })
 }
 
 // CREATE
