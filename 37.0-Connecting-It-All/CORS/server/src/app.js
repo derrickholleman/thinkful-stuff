@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+// enable cors for the entire api
+// const cors = require('cors')
+// app.use(cors())
 
 const corsEnabledRouter = require("./cors-enabled/cors-enabled.router");
 const corsNotEnabledRouter = require("./cors-not-enabled/cors-not-enabled.router");
