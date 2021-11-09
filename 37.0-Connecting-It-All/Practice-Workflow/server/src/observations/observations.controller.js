@@ -15,7 +15,7 @@ async function create(req, res) {
 const validSkyConditions = [100, 101, 102, 103, 104, 106, 108, 109];
 function hasValidSkyCondition(req, res, next) {
   const { sky_condition } = req.body;
-  console.log("After form submit sky_condition:", sky_condition)
+  console.log("sky condition value in database:", sky_condition)
 
   if (validSkyConditions.includes(sky_condition)) {
     return next();
@@ -51,6 +51,12 @@ function isLongitudeValid(req, res, next) {
   }
 }
 
+async function destroy(req, res) {
+  const { observationId } = req.params
+  await observationsService.delete(observationId)
+  res.sendStatus(204)
+}
+
 module.exports = {
   list: asyncErrorBoundary(list),
   create: [
@@ -59,4 +65,5 @@ module.exports = {
     hasValidSkyCondition,
     asyncErrorBoundary(create),
   ],
+  delete: asyncErrorBoundary(destroy)
 };

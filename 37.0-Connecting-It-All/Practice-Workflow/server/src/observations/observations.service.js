@@ -11,7 +11,12 @@ function create(observation) {
     .then((res) => res[0]);
 }
 
+function destroy(observation_id) {
+  return knex("observations").select("*").where({ observation_id }).del();
+}
+
 module.exports = {
   list,
   create,
+  delete: destroy
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createObservation } from "./utils/api";
-import Form from 'react-bootstrap/Form'
+import Form from "react-bootstrap/Form";
 
 const CreateObservation = () => {
   const initialFormState = {
@@ -17,11 +17,17 @@ const CreateObservation = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const handleSkyConditionChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: Number(e.target.value),
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("before form submit sky_condition:", formData.sky_condition)
-    createObservation(formData)
+    console.log("before form submit sky_condition:", formData.sky_condition);
+    createObservation(formData);
     setFormData({ ...initialFormState });
   };
 
@@ -58,22 +64,22 @@ const CreateObservation = () => {
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Select
-          className="form-select"
-          onChange={handleChange}
-          id="sky_condition"
-          name="sky_condition"
-        >
-          <option>-- Select a sky condition --</option>
-          <option value="100">Cloudless</option>
-          <option value="101">Some clouds</option>
-          <option value="102">Cloud Covered</option>
-          <option value="103">Foggy</option>
-          <option value="104">Raining</option>
-          <option value="106">Snowing</option>
-          <option value="108">Hailing</option>
-          <option value="109">Thunderstorms</option>
-        </Form.Select>
+          <Form.Select
+            className="form-select"
+            onChange={handleSkyConditionChange}
+            id="sky_condition"
+            name="sky_condition"
+          >
+            <option>-- Select a sky condition --</option>
+            <option value="100">Cloudless</option>
+            <option value="101">Some clouds</option>
+            <option value="102">Cloud Covered</option>
+            <option value="103">Foggy</option>
+            <option value="104">Raining</option>
+            <option value="106">Snowing</option>
+            <option value="108">Hailing</option>
+            <option value="109">Thunderstorms</option>
+          </Form.Select>
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
