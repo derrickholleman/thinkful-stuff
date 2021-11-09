@@ -12,10 +12,27 @@ async function create(req, res) {
 }
 
 // VALIDATION
+const VALID_PROPERTIES = ["latitude", "longitude", "sky_condition"];
+
+function hasOnlyValidProperties(req, res, next) {
+  // iterate through keys in req.body
+  const invalidFields = Object.keys(req.body).filter(
+    (field) => !VALID_PROPERTIES.includes(field)
+  );
+
+  if (invalidFields.length) {
+    return next({
+      status: 400,
+      message: `Invalid field(s): ${invalidFields.join(", ")}`,
+    });
+  }
+  next();
+}
+
 const validSkyConditions = [100, 101, 102, 103, 104, 106, 108, 109];
 function hasValidSkyCondition(req, res, next) {
   const { sky_condition } = req.body;
-  console.log("sky condition value in database:", sky_condition)
+  console.log("sky condition value in database:", sky_condition);
 
   if (validSkyConditions.includes(sky_condition)) {
     return next();
@@ -52,18 +69,19 @@ function isLongitudeValid(req, res, next) {
 }
 
 async function destroy(req, res) {
-  const { observationId } = req.params
-  await observationsService.delete(observationId)
-  res.sendStatus(204)
+  const { observationId } = req.params;
+  await observationsService.delete(observationId);
+  res.sendStatus(204);
 }
 
 module.exports = {
   list: asyncErrorBoundary(list),
   create: [
+    hasOnlyValidProperties,
     isLatitudeValid,
     isLongitudeValid,
     hasValidSkyCondition,
     asyncErrorBoundary(create),
   ],
-  delete: asyncErrorBoundary(destroy)
+  delete: asyncErrorBoundary(destroy),
 };
