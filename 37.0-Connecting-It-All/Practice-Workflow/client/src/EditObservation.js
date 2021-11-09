@@ -10,6 +10,17 @@ const EditObservation = () => {
   const history = useHistory();
   const { observationId } = useParams();
 
+  const skyConditions = {
+    100: "Cloudless",
+    101: "Some clouds",
+    102: "Cloud covered",
+    103: "Foggy",
+    104: "Raining",
+    106: "Snowing",
+    108: "Hailing",
+    109: "Thunderstorms",
+  };
+
   useEffect(() => {
     readObservation(observationId).then(setObservation).catch(console.error);
   }, [observationId]);
@@ -140,6 +151,9 @@ const EditObservation = () => {
           <option value="108">Hailing</option>
           <option value="109">Thunderstorms</option>
         </Form.Select>
+        <small style={{ display: "block" }}>
+          Previous sky condition: {skyConditions[observation.sky_condition]}
+        </small>
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

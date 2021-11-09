@@ -35,7 +35,6 @@ const CreateObservation = () => {
     e.preventDefault();
     createObservation(formData)
       .then(() => history.push("/"))
-      .catch(console.error);
     setFormData({ ...initialFormState });
   };
 
@@ -75,7 +74,7 @@ const CreateObservation = () => {
           />
         </Form.Group>
 
-        {/* TEMPERATURE INPUTS */ }
+        {/* TEMPERATURE INPUTS */}
         <h5>Select a temperature unit</h5>
         <ToggleButtonGroup
           type="radio"
@@ -145,7 +144,7 @@ const CreateObservation = () => {
           <option value="108">Hailing</option>
           <option value="109">Thunderstorms</option>
         </Form.Select>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" disabled={formData.air_temperature === ''}>
           Submit
         </button>
       </Form>
