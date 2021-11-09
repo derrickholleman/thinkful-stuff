@@ -6,8 +6,12 @@ function Home() {
   const [observations, setObservations] = useState([]);
 
   useEffect(() => {
-    listObservations().then(setObservations);
-  }, []);
+    let isMounted = true;
+    listObservations().then((res) => {
+      if (isMounted) setObservations(res);
+    });
+    return () => (isMounted = false);
+  }, [observations]);
 
   return (
     <main>

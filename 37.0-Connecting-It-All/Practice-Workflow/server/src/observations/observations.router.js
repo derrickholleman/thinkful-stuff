@@ -8,5 +8,10 @@ router
   .post(controller.create)
   .all(methodNotAllowed);
 
-router.route("/:observationId").delete(controller.delete);
+router
+  .route("/:observationId")
+  .get(controller.read)
+  .put(controller.update)
+  .delete(controller.delete)
+  .all(methodNotAllowed);
 module.exports = router;

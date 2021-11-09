@@ -63,7 +63,6 @@ export async function createObservation(observation) {
     body: JSON.stringify(observation),
   };
   try {
-    console.log("current submitted data:", observation)
     const newObservation = await fetch(`${API_BASE_URL}/observations`, options);
     return await newObservation.json()
   } catch (err) {
