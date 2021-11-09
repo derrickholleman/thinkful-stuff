@@ -3,7 +3,7 @@ import Header from "./Header";
 import NotFound from "./NotFound";
 import Menu from "./Menu";
 import { Route, Switch } from "react-router-dom";
-import Home from "../home/Home";
+import Home from "../Home";
 import CreateObservation from "../CreateObservation";
 
 function Layout() {

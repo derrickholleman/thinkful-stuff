@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { listObservations } from "../utils/api";
+import { listObservations } from "./utils/api";
 const dayjs = require("dayjs");
 
 function Home() {
