@@ -49,7 +49,14 @@ async function observationExists(req, res, next) {
     });
   }
 }
-const VALID_PROPERTIES = ["latitude", "longitude", "sky_condition"];
+const VALID_PROPERTIES = [
+  "observation_id",
+  "latitude",
+  "longitude",
+  "sky_condition",
+  "created_at",
+  "updated_at",
+];
 
 function hasOnlyValidProperties(req, res, next) {
   // iterate through keys in req.body

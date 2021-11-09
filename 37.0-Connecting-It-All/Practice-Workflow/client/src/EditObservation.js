@@ -15,16 +15,10 @@ const EditObservation = () => {
   const handleChange = (e) => {
     setObservation({
       ...observation,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSkyConditionChange = (e) => {
-    setObservation({
-      ...observation,
       [e.target.name]: Number(e.target.value),
     });
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     updateObservation(observation)
@@ -34,6 +28,7 @@ const EditObservation = () => {
 
   return (
     <div>
+      <h1>Edit Observation</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label htmlFor="latitude">Latitude</Form.Label>
@@ -67,7 +62,7 @@ const EditObservation = () => {
         </Form.Group>
         <Form.Select
           className="form-select"
-          onChange={handleSkyConditionChange}
+          onChange={handleChange}
           id="sky_condition"
           name="sky_condition"
         >

@@ -94,7 +94,7 @@ export async function updateObservation(observation) {
       `${API_BASE_URL}/observations/${observation.observation_id}`,
       options
     );
-    return await newObservation.json();
+    return await newObservation.json()
   } catch (err) {
     console.error(err);
   }

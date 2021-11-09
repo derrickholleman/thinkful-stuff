@@ -15,11 +15,11 @@ function create(observation) {
     .then((res) => res[0]);
 }
 
-function update(observationId) {
+function update(updatedObservation) {
   return knex("observations")
     .select("*")
-    .update(observationId)
-    .where({ observation_id: observationId.observation_id })
+    .where({ observation_id: updatedObservation.observation_id })
+    .update(updatedObservation)
     .returning("*")
     .then((res) => res[0]);
 }
