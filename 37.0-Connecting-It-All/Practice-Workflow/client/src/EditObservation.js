@@ -1,37 +1,39 @@
-import { useState } from "react";
-import { createObservation } from "./utils/api";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { readObservation, updateObservation } from "./utils/api";
 
-const CreateObservation = () => {
-  const initialFormState = {
-    latitude: "",
-    longitude: "",
-    sky_condition: "",
-  };
+const EditObservation = () => {
+  const [observation, setObservation] = useState({});
   const history = useHistory();
+  const { observationId } = useParams();
 
-  const [formData, setFormData] = useState({ ...initialFormState });
+  useEffect(() => {
+    readObservation(observationId).then(setObservation).catch(console.error);
+  }, [observationId]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setObservation({
+      ...observation,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSkyConditionChange = (e) => {
+    setObservation({
+      ...observation,
       [e.target.name]: Number(e.target.value),
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createObservation(formData)
+    updateObservation(observation)
       .then(() => history.push("/"))
       .catch(console.error);
-    setFormData({ ...initialFormState });
   };
 
   return (
     <div>
-      <h1>New Observation</h1>
-
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label htmlFor="latitude">Latitude</Form.Label>
@@ -43,7 +45,7 @@ const CreateObservation = () => {
             min="-90"
             max="90"
             step="0.01"
-            value={formData.latitude}
+            value={observation.latitude}
             onChange={handleChange}
             required
           />
@@ -58,14 +60,14 @@ const CreateObservation = () => {
             min="-180"
             max="180"
             step="0.01"
-            value={formData.longitude}
+            value={observation.longitude}
             onChange={handleChange}
             required
           />
         </Form.Group>
         <Form.Select
           className="form-select"
-          onChange={handleChange}
+          onChange={handleSkyConditionChange}
           id="sky_condition"
           name="sky_condition"
         >
@@ -87,4 +89,4 @@ const CreateObservation = () => {
   );
 };
 
-export default CreateObservation;
+export default EditObservation;

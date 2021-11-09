@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { listObservations } from "./utils/api";
+import { Link } from 'react-router-dom'
 const dayjs = require("dayjs");
 
 function Home() {
@@ -11,7 +12,7 @@ function Home() {
       if (isMounted) setObservations(res);
     });
     return () => (isMounted = false);
-  }, [observations]);
+  }, [observations.length]);
 
   return (
     <main>
@@ -24,6 +25,7 @@ function Home() {
               <th scope="col">Longitude</th>
               <th scope="col">Sky Condition</th>
               <th scope="col">Created</th>
+              <th scope="col">Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -34,6 +36,11 @@ function Home() {
                 <td>{observation.sky_condition}</td>
                 <td>
                   {dayjs(observation.created_at).format("MM/DD/YYYY H:mm:ss")}
+                </td>
+                <td>
+                  <Link to={`/observations/${observation.observation_id}`}>
+                    <button className="btn btn-warning">Edit</button>
+                  </Link>
                 </td>
               </tr>
             ))}

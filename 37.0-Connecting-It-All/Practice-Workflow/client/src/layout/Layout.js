@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import { Route, Switch } from "react-router-dom";
 import Home from "../Home";
 import CreateObservation from "../CreateObservation";
+import EditObservation from "../EditObservation";
 
 function Layout() {
   return (
@@ -18,6 +19,9 @@ function Layout() {
           </Route>
           <Route exact path="/observations/new">
             <CreateObservation />
+          </Route>
+          <Route exact path="/observations/:observationId">
+            <EditObservation />
           </Route>
           <Route>
             <NotFound />

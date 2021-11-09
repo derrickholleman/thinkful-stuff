@@ -5,3 +5,10 @@ select {
 button {
   margin-top: 1rem;
 }
+
+td button {
+  margin-top: 0rem;
+}
+td {
+  vertical-align: middle;
+}

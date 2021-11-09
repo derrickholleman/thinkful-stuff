@@ -64,7 +64,37 @@ export async function createObservation(observation) {
   };
   try {
     const newObservation = await fetch(`${API_BASE_URL}/observations`, options);
-    return await newObservation.json()
+    return await newObservation.json();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function readObservation(observationId) {
+  try {
+    const observationRes = await fetch(
+      `${API_BASE_URL}/observations/${observationId}`
+    );
+    return await observationRes.json();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function updateObservation(observation) {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(observation),
+  };
+  try {
+    const newObservation = await fetch(
+      `${API_BASE_URL}/observations/${observation.observation_id}`,
+      options
+    );
+    return await newObservation.json();
   } catch (err) {
     console.error(err);
   }
