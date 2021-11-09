@@ -56,6 +56,8 @@ const VALID_PROPERTIES = [
   "sky_condition",
   "created_at",
   "updated_at",
+  "air_temperature",
+  "unit",
 ];
 
 function hasOnlyValidProperties(req, res, next) {
@@ -111,6 +113,41 @@ function isLongitudeValid(req, res, next) {
   }
 }
 
+function isTemperatureValid(req, res, next) {
+  const { air_temperature, unit } = req.body;
+
+  if (unit === "F") {
+    if (air_temperature >= -60 && air_temperature <= 224) {
+      return next();
+    } else {
+      return next({
+        status: 400,
+        message: "Temperature in Fahrenheit must be between -60 and 224",
+      });
+    }
+  }
+
+  if (unit === "C") {
+    if (air_temperature >= -50 && air_temperature <= 107) {
+      return next();
+    } else {
+      return next({
+        status: 400,
+        message: "Temperature in Celcius must be between -50 and 107",
+      });
+    }
+  }
+
+  if (unit === "C" || unit === "F") {
+    return next();
+  } else {
+    return next({
+      status: 400,
+      message: "Temperature unit must be either 'C' or 'F'",
+    });
+  }
+}
+
 module.exports = {
   list: asyncErrorBoundary(list),
   read: [asyncErrorBoundary(observationExists), asyncErrorBoundary(read)],
@@ -119,6 +156,7 @@ module.exports = {
     isLatitudeValid,
     isLongitudeValid,
     hasValidSkyCondition,
+    isTemperatureValid,
     asyncErrorBoundary(create),
   ],
   update: [
@@ -126,6 +164,7 @@ module.exports = {
     isLatitudeValid,
     isLongitudeValid,
     hasValidSkyCondition,
+    isTemperatureValid,
     asyncErrorBoundary(observationExists),
     asyncErrorBoundary(update),
   ],
