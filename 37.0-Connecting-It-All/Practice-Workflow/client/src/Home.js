@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { listObservations } from "./utils/api";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 const dayjs = require("dayjs");
 
 function Home() {
@@ -24,6 +24,8 @@ function Home() {
               <th scope="col">Latitude</th>
               <th scope="col">Longitude</th>
               <th scope="col">Sky Condition</th>
+              <th scope="col">Air Temperature</th>
+              <th scope="col">Unit</th>
               <th scope="col">Created</th>
               <th scope="col">Edit</th>
             </tr>
@@ -34,6 +36,8 @@ function Home() {
                 <td>{observation.latitude}</td>
                 <td>{observation.longitude}</td>
                 <td>{observation.sky_condition}</td>
+                <td>{observation.air_temperature}</td>
+                <td>{observation.unit}</td>
                 <td>
                   {dayjs(observation.created_at).format("MM/DD/YYYY H:mm:ss")}
                 </td>
