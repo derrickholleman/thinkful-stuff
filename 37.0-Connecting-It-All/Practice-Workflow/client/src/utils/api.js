@@ -23,24 +23,49 @@ headers.append("Content-Type", "application/json");
  *  a promise that resolves to the `json` data or an error.
  *  If the response is not in the 200 - 399 range the promise is rejected.
  */
-async function fetchJson(url, options) {
+// async function fetchJson(url, options) {
+//   try {
+//     const response = await fetch(url, options);
+
+//     if (response.status === 204) {
+//       return null;
+//     }
+
+//     const payload = await response.json();
+
+//     if (payload.error) {
+//       return Promise.reject({ message: payload.error });
+//     }
+//     return payload.data;
+//   } catch (error) {
+//     if (error.name !== "AbortError") {
+//       console.error(error.stack);
+//       return Promise.reject({ message: error.message });
+//     }
+//   }
+// }
+
+export async function listObservations() {
   try {
-    const response = await fetch(url, options);
+    const observationsRes = await fetch(`${API_BASE_URL}/observations`);
+    return await observationsRes.json();
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-    if (response.status === 204) {
-      return null;
-    }
-
-    const payload = await response.json();
-
-    if (payload.error) {
-      return Promise.reject({ message: payload.error });
-    }
-    return payload.data;
-  } catch (error) {
-    if (error.name !== "AbortError") {
-      console.error(error.stack);
-      return Promise.reject({ message: error.message });
-    }
+export async function createObservation(observation) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(observation),
+  };
+  try {
+    const newObservation = await fetch(`${API_BASE_URL}/observations`, options);
+    return await newObservation.json()
+  } catch (err) {
+    console.error(err);
   }
 }
