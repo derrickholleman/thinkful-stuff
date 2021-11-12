@@ -3,10 +3,12 @@ const moviesService = require("./movies.service");
 
 async function list(req, res) {
   const { is_showing } = req.query;
-  let data 
+  let data;
 
   if (is_showing) {
-    data = await (await moviesService.listMoviesCurrentlyShowing()).slice(0, 15);
+    data = await (
+      await moviesService.listMoviesCurrentlyShowing()
+    ).slice(0, 15);
   } else {
     data = await moviesService.list();
   }
@@ -14,6 +16,29 @@ async function list(req, res) {
   res.json({ data });
 }
 
+async function read(req, res) {
+  const { movie } = res.locals;
+  const data = await moviesService.read(movie.movie_id);
+  res.json({ data });
+}
+
+// VALIDATION
+async function movieExists(req, res, next) {
+  const { movieId } = req.params;
+  const validMovie = await moviesService.read(movieId);
+
+  if (validMovie) {
+    res.locals.movie = validMovie;
+    return next();
+  } else {
+    next({
+      status: 404,
+      message: "Movie cannot be found",
+    });
+  }
+}
+
 module.exports = {
   list: asyncErrorBoundary(list),
+  read: [asyncErrorBoundary(movieExists), asyncErrorBoundary(read)],
 };

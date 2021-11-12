@@ -10,7 +10,12 @@ function listMoviesCurrentlyShowing() {
     .where({ "mt.is_showing": true });
 }
 
+function read(movie_id) {
+  return knex("movies").select("*").where({ movie_id }).first();
+}
+
 module.exports = {
   list,
   listMoviesCurrentlyShowing,
+  read
 };
