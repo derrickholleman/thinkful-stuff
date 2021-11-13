@@ -5,8 +5,10 @@ const app = express();
 app.use(cors());
 
 const moviesRouter = require("./movies/movies.router");
+const theatersRouter = require("./theaters/theaters.router");
 
 app.use("/movies", moviesRouter);
+app.use("/theaters", theatersRouter)
 
 // Not found handler
 app.use((req, res, next) => {
