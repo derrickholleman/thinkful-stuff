@@ -11,7 +11,7 @@ async function list(req, res) {
 async function read(req, res) {
   const { review } = res.locals;
   const data = await reviewsService.readReviewCritic(review.review_id);
-  res.json({ data });
+  res.json({ data: data[0] });
 }
 
 // UPDATE
