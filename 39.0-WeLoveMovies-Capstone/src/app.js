@@ -3,6 +3,14 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(cors());
+app.use(express.json());
+// fix for req.body not being defined
+app.use(express.urlencoded({
+  extended: true
+}));
+
+const errorHandler = require('./errors/errorHandler');
+const notFound = require('./errors/notFound');
 
 const moviesRouter = require("./movies/movies.router");
 const theatersRouter = require("./theaters/theaters.router");
@@ -12,16 +20,7 @@ app.use("/movies", moviesRouter);
 app.use("/theaters", theatersRouter);
 app.use("/reviews", reviewsRouter);
 
-// Not found handler
-app.use((req, res, next) => {
-  next({ status: 404, message: `Not found: ${req.originalUrl}` });
-});
-
-// General Error handler
-app.use((error, req, res, next) => {
-  console.error(error);
-  const { status = 500, message = "Something went wrong!" } = error;
-  res.status(status).json({ error: message });
-});
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;
