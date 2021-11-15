@@ -1,16 +1,19 @@
 const knex = require("../db/connection");
-const mapProperties = require("../utils/map-properties");
+const addCritics = require("../utils/addCritics");
+const reduceProperties = require("../utils/reduce-properties");
 
-const addCritics = mapProperties({
-  // keys must match column names in table
-  critic_id: "critic.critic_id",
-  preferred_name: "critic.preferred_name",
-  surname: "critic.surname",
-  organization_name: "critic.organization_name"
+const reduceReviewsAndMovie = reduceProperties("movie_id", {
+  review_id: ["reviews", null, "review_id"],
+  content: ["reviews", null, "content"],
+  score: ["reviews", null, "score"],
+  critic_id: ["reviews", null, "critic_id"]
 });
 
 function list() {
-  return knex("movies").select("*");
+  return knex("movies as m")
+    .select("*")
+    .join("reviews as r", "m.movie_id", "r.movie_id")
+    .then(reduceReviewsAndMovie)
 }
 
 function listMoviesCurrentlyShowing() {
@@ -23,6 +26,7 @@ function read(movie_id) {
   return knex("movies").select("*").where({ movie_id }).first();
 }
 
+// movies/:movieId/theaters
 function readMovieAndTheaters(movie_id) {
   return knex("movies as m")
     .select("t.*", "mt.*")
@@ -31,14 +35,14 @@ function readMovieAndTheaters(movie_id) {
     .where({ "m.movie_id": movie_id });
 }
 
+// movies/:movieId/reviews
 function readMovieAndReviews(movie_id) {
   return knex("movies as m")
     .select("r.*", "c.*")
     .join("reviews as r", "m.movie_id", "r.movie_id")
     .join("critics as c", "r.critic_id", "c.critic_id")
     .where({ "m.movie_id": movie_id })
-    .first()
-    .then(addCritics)
+    .then(addCritics);
 }
 
 module.exports = {
@@ -46,5 +50,5 @@ module.exports = {
   listMoviesCurrentlyShowing,
   read,
   readMovieAndTheaters,
-  readMovieAndReviews
+  readMovieAndReviews,
 };
