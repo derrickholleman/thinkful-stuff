@@ -8,8 +8,7 @@ async function list(req, res) {
 
 async function read(req, res) {
   const { observation } = res.locals;
-  const data = await observationsService.read(observation.observation_id);
-  res.json(data);
+  res.json(observation);
 }
 
 async function create(req, res) {
