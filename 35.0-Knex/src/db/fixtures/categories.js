@@ -4,12 +4,22 @@ module.exports = [
     category_description:
       "A category for electronic gadgets of any kind, appealing to all genders.",
     color: "purple",
+    stats: {
+      "HP": 56,
+      "Attack": 34,
+      "Defense": 17
+    }
   },
   {
     category_name: "candles",
     category_description:
       "A category for gift candles, including both scented and non-scented candles, for the home.",
-      color: "red"
+      color: "red",
+      stats: {
+        "HP": 78,
+        "Attack": 12,
+        "Defense": 22
+      }
   },
   {
     category_name: "mugs",
