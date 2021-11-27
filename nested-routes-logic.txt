@@ -6,7 +6,7 @@ you have all the notes, then each note has ratings that are tied to the individu
 
 /ratings/:ratingId also has it's own separate route.
 
-// USERS
+// NOTES
 [
   {
     id: 1,
