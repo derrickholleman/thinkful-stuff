@@ -34,3 +34,6 @@ web: node ./src/app.js
 heroku create <databaseURLName> and git push heroku main
 
 heroku config:set <.ENV KEY NAME>=<ELEPHANTSQL_PROD_URL>
+
+if weird errors, restart deployment using 
+git commit --allow-empty -m "restarting"
